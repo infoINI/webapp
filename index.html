@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="stylejs.css" type="text/css"/>
+        <meta charset="utf-8" />
+
+         <!-- icons -->
+        <link rel="shortcut icon" href="/media/favicon.ico" />
+        <link rel="apple-touch-icon" href="/media/logo.png" sizes="118x118" />
+        <link rel="apple-touch-icon" href="/media/logo_32.png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/media/logo.png" />
+
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script language="javascript" src="tweet/jquery.tweet.js" type="text/javascript"></script>
+        <script src="jquery.scrollTo-1.4.3.1-min.js"></script>
+    </head>
+    <body style="overflow: hidden;"> <!-- overflow to disable scrollbar -->
+
+
+        <div id="bottombar" style="">
+            <span id="date"></span>
+	    <span style="color:red;"><!-- nop --></span>
+        </div>
+
+        <div class="page"> 
+            <div class="block" style="margin-top:20%;">
+                <h2>Spendenbetrag</h2>
+                    <table width="100%">
+                        <tr>
+                            <td style="width:10em;">Kaffee</td>
+                            <td align="right">30¢</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10em;">Club Mate</td>
+                            <td align="right">1,00€</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10em">YumYum</td>
+                            <td align="right">50¢</td>
+                        </tr>
+                        <tr>
+                            <td>Kopie</td>
+                            <td align="right">5¢<td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+
+        <!--
+        <div class="page"> 
+            <div class="block w7 lfloat">
+                <h2>0xCAFE</h2>
+                <div class="pot">
+                    <div class="progress_bar">
+                        <strong id="pot1_text">...</strong>
+                        <span id="pot1_level" style="height: 0;">&nbsp;</span>
+                    </div>
+                </div>
+                <div align="center">
+                    <a href="/munin/infoini/general/cafe_pots.html">Verlauf</a>
+                </div>
+            </div>
+        </div>
+        -->
+
+
+
+
+
+        <div class="page"> 
+            <div class="block">
+                <h2>News</h2>
+                <div id="news">...</div>
+                <a href="/redmine/projects/fsropen/news">Alle News</a>
+            </div>
+        </div>
+
+
+        <div class="page"> 
+            <div class="block">
+                <h2>Speiseplan</h2>
+                <div id="speiseplan" style="color:black;">
+                    <script type="text/javascript" src="http://www.studentenwerk-berlin.de/speiseplan/js/beuth/tag/kurz/0"></script>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="page"> 
+            <div class="block ">
+                <h2>Tweets</h2>
+                <div id="tweets">Loading...</div>
+                <a href="http://twitter.com/InfoINI/">@infoINI</a>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+
+    </body>
+</html>
