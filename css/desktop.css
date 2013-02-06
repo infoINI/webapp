@@ -1,0 +1,205 @@
+/**
+ * DEFAULT STUFF
+ */
+@import url(http://fonts.googleapis.com/css?family=Signika+Negative:400,300);
+body {
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 300;
+    margin: 1.75em auto;
+    line-height: 1.75em;
+    word-spacing: 0.4em;
+	letter-spacing: 0.01em;
+    color: white;
+    background: #232323 url("../img/cartographer.png");
+	/** overflow:hidden;**/
+}
+
+/** links **/
+a {
+    background: transparent;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+}
+
+a:link {
+    color: #1b67c9;
+}
+
+a:visited {
+    color: darkorchid;
+}
+
+/**
+ * SPECIAL STUFF
+ */
+
+/** hidden element **/
+.hidden {
+    display: none;
+}
+
+/** alpha **/
+.alpha {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity = 50);
+    opacity: .5;
+}
+
+/** round corners **/
+.round {
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+
+/** shadow **/
+.shadow {
+    /*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+    -moz-box-shadow: 0px 0px 15px #121212;
+    -webkit-box-shadow: 0px 0px 15px #121212;
+    box-shadow: 0px 0px 15px #121212;
+}
+
+/** horizontal list **/
+.horizontal-list li {
+    display: inline;
+    list-style-type: none;
+    padding: 2em;
+}
+
+/** positioning center **/
+.center {
+    text-align: center !important;
+}
+
+/** positioning left **/
+.left {
+    text-align: left !important;
+}
+
+/** positioning right **/
+.right {
+    text-align: right !important;
+}
+
+/** word wrap **/
+.break-word {
+    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap; /* Opera 4 - 6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word; /* IE 5.5+ */
+}
+
+/** relative positioning **/
+.position-relative {
+    position: relative;
+}
+
+/** absolute positoning **/
+.position-absolute {
+    position: absolute;
+    bottom: 0;
+	right: 0;
+}
+
+/**
+ * NORMAL STUFF
+ */
+
+/** container **/
+.box {
+    background: #565656 url("../img/low_contrast_linen.png");
+    text-align: left;
+    margin-bottom: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.header {
+	font-size: 3em;
+	
+}
+
+.label {
+    float: left;
+    width: 100px;
+    text-align: right;
+    padding-top: 3px;
+    padding-right: 5px;
+}
+
+.colorbox {
+    margin: 1em;
+    padding: 2em;
+}
+
+.textarea {
+    width: 600px;
+    height: 280px;
+    line-height: 1.5em;
+    border: 0px solid #efefef;
+    padding: 1em;
+    margin: 1em;
+    color: white;
+    background: #565656 url("../img/low_contrast_linen.png");
+}
+
+#pricetable {
+	margin-left: 180px;
+	width: 70%;
+	height: 100%;
+	font-size: 5em;
+	line-height: 1.4em;
+}
+
+#mensa_item_row {
+	margin-top: -3em;
+}
+
+.mensa_item {
+	padding: 1em;
+	font-size: 1.4em;
+	line-height: 1.35em;
+}
+
+.zusatz {
+	display : hidden;
+}
+
+#news-content {
+	font-size: 1.65em;
+	line-height: 1.65em;
+}
+
+.content {
+	padding:2em;
+}
+
+#bottombar {
+    width:100%;
+    position: fixed;
+    bottom: 0;
+	right: 0;
+    background-color:#000;
+    z-index:100;
+    font-size:2em;
+	line-height: 2.1em;
+}
+
+#tweets {
+	padding: 1em;
+}
+
+li{	margin-bottom: 1.5em; font-size: 2em; line-height: 2em;}
+
+ul, li { list-style-type: none !important;}
+
+.memberbox {
+	height: 200px;
+	text-align: center;
+}
