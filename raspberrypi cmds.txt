@@ -2,7 +2,7 @@
 ssh pi@raspi
 
 // display url
-DISPLAY=:0 chromium http://192.168.178.23/infoini-web-app/
+DISPLAY=:0 chromium ~/infoini-web-app/index.htm
 
 // default site
 killall chromium

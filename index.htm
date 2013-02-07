@@ -21,6 +21,9 @@
   <body>  
     <div class="container">
 	
+		<!-- logo -->
+		<div id="ini-logo"></div>
+	
 		<!-- Status bar -->
 		<div id="bottombar" class="right">
 			<span id="date" />
@@ -29,20 +32,20 @@
 		<!-- News -->
 		<div id="news">
 			<div class="row">
-					<div class="twelvecol last box round shadow center header"><p id="news-header">News</p></div>
+					<div class="twelvecol last box round shadow"><p id="news-header" class="header">News</p></div>
 			</div>
 			<div class="row">
-					<div class="twelvecol last box round shadow"><p id="news-content" class="content">...loading<p></div>
+					<div class="twelvecol last box round shadow"><p id="news-content" class="content"><img src="img/loading.gif"><p></div>
 			</div>
 		</div>
 		
 		<!-- Twitter -->
 		<div id="twitter">
 			<div class="row">
-					<div class="twelvecol last box round shadow center header">Twitter - @infoini</div>
+					<div class="twelvecol last box round shadow"><p class="header">Twitter - @infoini</p></div>
 			</div>
 			<div class="row">
-					<div class="twelvecol round shadow box"><p id="tweets">...loading tweets</p>			
+					<div class="twelvecol round shadow box"><p id="tweets"><img src="img/loading.gif"></p>			
 						<a href="http://twitter.com/InfoINI/" class="hidden">@infoINI</a>
 					</div>
 			</div>
@@ -51,17 +54,20 @@
 		<!-- Mensa Food -->
 		<div id="mensa">
 			<div class="row">
-				<div class="twelvecol last box round shadow center header">Speiseplan</div>
+				<div class="twelvecol last box round shadow"><p class="header">Speiseplan</p></div>
 			</div>
 			<div class="row" id="mensa_item_row">
-				<div id="food" class="content">...loading</div>
+				<!-- hidden helper div -->
+				<div id="food_raw" style="display:none;"><img src="img/loading.gif"></div>
+				<!-- actual content -->
+				<div id="food" class="content"><img src="img/loading.gif"></div>
 			</div>
 		</div>
 		
 		<!-- Donations  -->
 		<div id="donations">
 			<div class="row">
-					<div class="twelvecol last box round shadow center header">Spendenliste</div>
+					<div class="twelvecol last box round shadow"><p class="header">Spendenliste</p></div>
 			</div>
 			<div class="row">
 					<div class="twelvecol round shadow box">
@@ -98,7 +104,7 @@
 		<!-- Member  -->
 		<div id="member">
 			<div class="row">
-					<div class="twelvecol last box round shadow center header">Fachschaftsrat Mitglieder</div>
+					<div class="twelvecol last box round shadow"><p class="header">Fachschaftsrat Mitglieder</p></div>
 			</div>
 			<div class="row">
 					<div class="threecol round shadow box memberbox"><img src="http://lorempixel.com/180/180" class="shadow round" /><br />Helfer 1</div> 
@@ -118,6 +124,15 @@
 			</div>
 		</div>
 	</div>
-	<div id="food_raw" style="display:none;">...loading</div>
+	
+	<!-- xkcd.com -->
+	<div id="comic">
+		<div class="row">
+				<div class="twelvecol last box round shadow"><p class="header">Comic of the Week</p></div>
+		</div>
+		<div class="row">
+				<div class="twelvecol last box round shadow"><p id="comic-content" class="content"><img src="img/loading.gif"><p></div>
+		</div>
+	</div>
   </body>
 </html>
