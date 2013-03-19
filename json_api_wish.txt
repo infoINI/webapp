@@ -1,7 +1,0 @@
-{	"door_status": "door_status", 
-	"cafepots": [{"status": status, "level": level}],
-	"opening_times" : "url.pdf",
-	"pricetable" : [{"item" : price}],
-	"fsr_member" : [{ "prename": "prename", "lastname": "lastname", "position" : "position", "course_of_study" : "medieninformatik", "photo" : "url.png", email: "lastname@infoini.de"}],
-	"json_info" : { "door_status" : [true, false], "status" : ["Kanne vorhanden", "Kanne fehlt"], "level" : "range between 0 and 1"}
-}
