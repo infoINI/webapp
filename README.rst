@@ -5,7 +5,7 @@ Kommandos für RasPi
 ssh pi@raspi
 
 // display url
-DISPLAY=:0 chromium ~/infoini-web-app/index.htm
+DISPLAY=:0 chromium http://infoini.de/webapp/?demo
 
 // default site
 killall chromium
