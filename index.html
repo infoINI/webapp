@@ -167,6 +167,18 @@ a { color: #00555f; text-decoration:none;    }
 	#ini-logo {position:absolute;height:5em;}
 	#nav a { display:block; border-top:1px solid #aaa;border-right:0;}
 }
+/* demo mode        --------------------------------------------------- */
+@media only screen and (min-width: 1200px) { 
+	body.demo, .demo table { font-size:48px; }
+	.demo .page { margin:0 ; width:auto; }
+	.demo .main {
+		overflow:hidden;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+	.demo #tweets {font-size:0.7em;}
+}
 </style>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -197,7 +209,7 @@ a { color: #00555f; text-decoration:none;    }
 				</div>
             </div>
 			&nbsp;
-            <div class="main">
+            <div class="main noDemo">
                 <div class="row">
 					<div id="tuer">
 						Tür ...
@@ -335,9 +347,6 @@ $(document).ready(function() {
 			t.text('Tür '+ (open?'offen':'geschlossen'));
 		};
 
-		// flash
-		$('#page_status').animate({'opacity':0.6},100).animate({'opacity':1},100);
-
 		setTuer(data.status == "OPEN");
 		setLevel($('#kanne1'),data.pots[0].level || 0);
 		setLevel($('#kanne2'),data.pots[1].level || 0);
@@ -370,6 +379,9 @@ $(document).ready(function() {
 
 	var update = function() {
 		$.ajax('/api/combined.json',{success:onSuccess_status,cache:false,ifModified:false} );
+	};
+	var updateInterval = 60 * 1000;
+	var updateSlow = function() {
 		$.get('/redmine/projects/fsropen/news.atom',{}, onSuccess_news);
 		$("#tweets").tweet({
 			query:'infoini',
@@ -378,13 +390,20 @@ $(document).ready(function() {
 			loading_text: "loading tweets..."
 		});
 	};
-	var updateInterval = 60 * 1000;
+	var updateSlowInterval = 60 * 1000;
 
 
 	// scroll through pages if called with ?demo
 	if(window.location.search == '?demo') {
+		// increase update freq
 		updateInterval = 5 * 1000;
-		$('body').css('overflow','hidden');
+
+		// hide scrollbars, handle scrolling
+		$('body').css('overflow','hidden').addClass('demo');
+
+		// hide irelevant content
+		$('.noDemo').hide();
+
 		var navLinks = $('#nav a:visible').get();
 		var navLinkCurrent = 0;
 		window.setInterval(function() {
@@ -396,9 +415,11 @@ $(document).ready(function() {
 
 	// refresh
 	setInterval(update,updateInterval);
+	setInterval(updateSlow,updateSlowInterval);
 
 
 	update();
+	updateSlow();
 
 });
 </script>
