@@ -200,6 +200,10 @@
 
       o.avatar_size = s.avatar_size;
       o.avatar_url = extract_avatar_url(o.retweet ? item.retweeted_status : item, (document.location.protocol === 'https:'));
+
+	  // FIX: (bara) load larger avatars
+	  o.avatar_url = o.avatar_url.replace("_normal.","_reasonably_small.");
+
       o.avatar_screen_name = o.retweet ? o.retweeted_screen_name : o.screen_name;
       o.avatar_profile_url = o.twitter_base+o.avatar_screen_name;
 
