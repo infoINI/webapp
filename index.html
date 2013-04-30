@@ -168,6 +168,7 @@ a { color: #00555f; text-decoration:none;    }
 	#nav a { display:block; border-top:1px solid #aaa;border-right:0;}
 }
 /* demo mode        --------------------------------------------------- */
+.demoOnly {display:none;}
 @media only screen and (min-width: 1200px) { 
 	body.demo, .demo table { font-size:48px; }
 	.demo .page { margin:0 ; width:auto; }
@@ -312,26 +313,6 @@ a { color: #00555f; text-decoration:none;    }
 <!-- included script for faster loading -->
 <script>
 $(document).ready(function() {
-	// navigation
-	$('.page:has(.header)').each(function(i) {
-		var text = $(this).find('.header').text();
-		var o = $('<a href="#'+$(this).attr('id')+'">'+text+'</a>');
-		//var page = this;
-		//o.click(function(e) {
-		//	e.preventDefault();	
-		//	$.scrollTo(page,600);
-		//});
-		$('#nav').append(o);
-	});
-	$('#nav').onePageNav({    scrollOffset: 40 });
-	$('.page .header h1').each(function(i) {
-		var up = $('<a href="#" class="up">↥</a>');
-		$(this).prepend(up);
-		up.click(function(e) {
-			e.preventDefault();	
-			$.scrollTo(0,600);
-		});
-	});
 
 	// tuer / cafe status
 	var onSuccess_status = function(data,textStatus) {
@@ -403,10 +384,11 @@ $(document).ready(function() {
 
 		// hide irelevant content
 		$('.noDemo').hide();
+		$('.demoOnly').show();
 
-		var navLinks = $('#nav a:visible').get();
-		var navLinkCurrent = 0;
+		var navLinkCurrent = 1;
 		window.setInterval(function() {
+                        var navLinks = $('#nav a:visible').get();
 			navLinks[navLinkCurrent].click();	
 			navLinkCurrent++;
 			navLinkCurrent%=navLinks.length;
@@ -421,6 +403,26 @@ $(document).ready(function() {
 	update();
 	updateSlow();
 
+	// navigation
+	$('.page:has(.header):visible').each(function(i) {
+		var text = $(this).find('.header').text();
+		var o = $('<a href="#'+$(this).attr('id')+'">'+text+'</a>');
+		//var page = this;
+		//o.click(function(e) {
+		//	e.preventDefault();	
+		//	$.scrollTo(page,600);
+		//});
+		$('#nav').append(o);
+	});
+	$('#nav').onePageNav({    scrollOffset: 40 });
+	$('.page .header h1').each(function(i) {
+		var up = $('<a href="#" class="up">↥</a>');
+		$(this).prepend(up);
+		up.click(function(e) {
+			e.preventDefault();	
+			$.scrollTo(0,600);
+		});
+	});
 });
 </script>
 
