@@ -1,40 +1,43 @@
+<!DOCTYPE html>
+
 <html>
-    <head>
-        <meta charset="utf-8" />
-		<title>infoINI-Status</title>
+<head>
+  <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
 
-         <!-- icons -->
-        <link rel="shortcut icon" href="/media/favicon.ico" />
-        <link rel="apple-touch-icon" href="/media/logo.png" sizes="118x118" />
-        <link rel="apple-touch-icon" href="/media/logo_32.png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/media/logo.png" />
+  <title>infoINI-Status</title>
+  <meta charset="utf-8"><!-- icons -->
+  <link rel="shortcut icon" href="/media/favicon.ico">
+  <link rel="apple-touch-icon" href="/media/logo.png" sizes="118x118">
+  <link rel="apple-touch-icon" href="/media/logo_32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/media/logo.png"><!-- we are HandheldFriendly -->
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no"><!-- included style for faster loading -->
 
-         <!-- we are HandheldFriendly -->
-        <meta name="HandheldFriendly" content="true" />
-        <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
-
-<!-- included style for faster loading -->
-<style>
+  <style type="text/css">
 body, div, html,h1 {margin:0;padding:0; }
-* { font-family: Arial; color:#222; }
-body { background-color:#fff; padding-bottom:5em; }
-body, table { font-size:24px;}
+  * { font-family: Arial; color:#222; }
+  body { background-color:#fff; padding-bottom:5em; }
+  body, table { font-size:24px;}
 
-a { color: #00555f; text-decoration:none;    }
-.footer { padding: 3em 0; font-size:0.6em;}
+  a { color: #00555f; text-decoration:none; text-shadow: 0.05em 0.05em 0.1em #aaa;}
+  .footer { padding: 3em 0; font-size:0.6em;}
 
-/* logo             --------------------------------------------------- */
-#ini-logo {
-	position: fixed;
-	z-index: 100;
-	top: 4px;
-	right: 15px;
-	height:2.2em;
-}
-#ini-logo img {max-width:100%;max-height:100%;}
+  /* logo             --------------------------------------------------- */
+  #ini-logo {
+        position: fixed;
+        z-index: 100;
+        top: 4px;
+        right: 15px;
+        height:2.2em;
+  }
+  #ini-logo img {
+    max-width:100%;max-height:100%;
+    box-shadow: 0 0 0.4em #666;
+    border-radius: 0.2em;
+  }
 
-/* navigation       --------------------------------------------------- */
-#nav {
+  /* navigation       --------------------------------------------------- */
+  #nav {
     border-bottom:1px solid #aaa;
     width: 100%;
     position: fixed;
@@ -42,8 +45,9 @@ a { color: #00555f; text-decoration:none;    }
     right: 0;
     background-color: #ddd;
     z-index: 100;
-    text-shadow: 1px 1px 5px #aaa;
-    box-shadow: 0px 0px 15px #666;
+    text-shadow: 0.05em 0.05em 0.1em #aaa;
+    box-shadow: 0 0 0.4em #666;
+    /* http://www.colorzilla.com/gradient-editor/ */
     background: #ddd;
     background: -moz-linear-gradient(top, #ffffff 0%, #d6d6d6 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#d6d6d6));
@@ -52,390 +56,394 @@ a { color: #00555f; text-decoration:none;    }
     background: -ms-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
     background: linear-gradient(to bottom, #ffffff 0%,#d6d6d6 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d6d6d6',GradientType=0 );
-}
-#nav a {
+  }
+  #nav a {
     display:inline-block;
     padding:0.2em;
     border-right:1px solid #aaa;
-}
-#nav a:hover, #nav a.current { background-color:#fff;}
+  }
+  #nav a:hover, #nav a.current { background-color:#fff;}
 
-/* pages            --------------------------------------------------- */
-.header {padding:25px;}
-.header h1 {
+  /* pages            --------------------------------------------------- */
+  .header {padding:0.3em;}
+  .header h1 {
     font-size:2em;
-    text-shadow: 1px 1px 5px #aaa;
-	margin-top:1em;
-}
-.header .up {float:right;color:#aaa;}
-.header .up:hover {color: #00555f;}
-.page { margin-bottom:1em; margin-top:1em; }
-.main { border-top:1px solid #ccc; }
-.content { min-height:2em; padding:10px;
-}
-.row {
+    text-shadow: 0.05em 0.05em 0.1em #aaa;
+    margin-top:1em;
+  }
+  .header .up       { float:right;color:#aaa;}
+  .header .up:hover { color: #00555f;}
+  .page             { margin-bottom:1em; margin-top:1em; }
+  .main             { border-top:1px solid #ccc; }
+  .content          { min-height:2em; padding:10px; }
+  .row {
     border-bottom:1px solid #aaa;
-    box-shadow: 0px 0px 10px #aaa;
+    box-shadow: 0 0 0.4em #aaa;
     background-color:#d8d8d8;
-}
-.alt {background-color:#e8e8e8;}
-.col {width:50%;}
-.col.left {float:left;}
-.col.left .content {border-right:1px solid #aaa;}
-.col.right{ float:right;}
-.clear {clear:both;}
+  }
+  .alt               { background-color:#e8e8e8;}
+  .col               { width:50%;}
+  .col.left          { float:left;}
+  .col.left .content { border-right:1px solid #aaa;}
+  .col.right         { float:right;}
+  .clear             { clear:both;}
 
-/* twitter          --------------------------------------------------- */
-#tweets .tweet_avatar img{
-    vertical-align:top;    
+  /* twitter          --------------------------------------------------- */
+  #tweets .tweet_avatar img{
+    vertical-align:top;
     border-right:1px solid #aaa;
     float:left;
     margin-right:5px;
-	height:100%;
-	width:auto;
-} 
-
-#tweets ul {
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-#tweets li {
+    height:100%;
+    width:auto;
+  } 
+  #tweets ul {
+        list-style:none;
+        margin:0;
+        padding:0;
+  }
+  #tweets li {
     height:5.1em;
     overflow:hidden;
     border-bottom:1px solid #aaa;
-    box-shadow: 0px 0px 10px #aaa;
+    box-shadow: 0 0 0.4em #aaa;
     background-color:#d8d8d8;
-}
-#tweets .tweet_even {background-color:#e8e8e8;}
-#tweets .tweet_time {display:none;}
+  }
+  #tweets .tweet_even {background-color:#e8e8e8;}
+  #tweets .tweet_time {display:none;}
 
-/* status           --------------------------------------------------- */
-#page_status .main {font-size:1.2em;}
-#tuer {text-align:center;}
-#tuer.open { background-color:#0a0; }
-#tuer.closed { background-color:#c00; }
-.cafe_bar {
-	background-color:#6F4E37;
-	width:0;
-}
+  /* status           --------------------------------------------------- */
+  #page_status .main { font-size:1.2em;}
+  #tuer              { text-align:center;}
+  #tuer.open         { background-color:#0a0; }
+  #tuer.closed       { background-color:#c00; }
+  .cafe_bar {
+        background-color:#6F4E37;
+        width:0;
+  }
 
-/* stpeiseplan      --------------------------------------------------- */
-#speiseplan *{ background-color:transparent; border:0; }
-#speiseplan .mensa_day_speise_preis,
-#speiseplan .side_dishes,
-#speiseplan .mensa_additional_information,
-#speiseplan .zusatz {display:none;}
+  /* stpeiseplan      --------------------------------------------------- */
+  #speiseplan *{ background-color:transparent; border:0; }
+  #speiseplan .mensa_day_speise_preis,
+  #speiseplan .side_dishes,
+  #speiseplan .mensa_additional_information,
+  #speiseplan .zusatz {display:none;}
 
-/* big displays     --------------------------------------------------- */
-@media only screen and (min-width: 999px) { 
-	body, table { font-size:36px; }
-	.page { margin:0 auto; width:1000px; }
-	.main {
-		overflow:hidden;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-		border-radius: 10px;
-	}
-}
-/* hd- displays     --------------------------------------------------- */
-@media only screen and (min-width: 1500px) { 
-	#nav { padding-top:220px; width:220px;font-size:1.1em; }
-	#nav a { display:block; border-top:1px solid #aaa;border-right:0;}
-	#nav a:nth-of-type(1) {display:none; }
-	#ini-logo {
-		position: fixed;
-		z-index: 100;
-		top: 40px;
-		right: 40px;
-		height:auto;
+  /* demo mode        --------------------------------------------------- */
+  .demoOnly {display:none;}
+  body.demo, .demo table { font-size:48px; }
+  @media only screen and (min-width: 1200px) and (max-width:1499px) {
+        .demo .page { margin:0 ; width:auto; }
+        .demo .main {
+                overflow:hidden;
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+        }
+        .demo #tweets {font-size:0.7em;}
+  }
+  /* big displays     --------------------------------------------------- */
+  @media only screen and (min-width: 1000px) { 
+        body, table { font-size:36px; }
+        .page { margin:0 auto; width:1000px; }
+        .main {
+                overflow:hidden;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+        }
+  }
+  /* hd-displays      --------------------------------------------------- */
+  @media only screen and (min-width: 1500px) { 
+        #nav                  { padding-top:220px; width:220px;font-size:1.1em; }
+        #nav a                { display:block; border-top:1px solid #aaa;border-right:0;}
+        #nav a:nth-of-type(1) { display:none; }
+        #ini-logo {
+                position: fixed;
+                z-index: 100;
+                top: 40px;
+                right: 40px;
+                height:auto;
 
-	}
-	#page_status {
-		position:fixed;
-		left:1em;top:0;
-		max-width:14%;
-		font-size:0.7em;
-	}
-	#page_status .header a {display:none; }
-	.header h1:nth-of-type(1) {margin-top:0; }
-}
-/* small displays   --------------------------------------------------- */
-@media only screen and (max-width: 550px) { 
-	body, table { font-size:16px; }
-	#nav {position:static;font-size:24px;}
-	#ini-logo {position:absolute;height:5em;}
-	#nav a { display:block; border-top:1px solid #aaa;border-right:0;}
-}
-/* demo mode        --------------------------------------------------- */
-.demoOnly {display:none;}
-@media only screen and (min-width: 1200px) { 
-	body.demo, .demo table { font-size:48px; }
-	.demo .page { margin:0 ; width:auto; }
-	.demo .main {
-		overflow:hidden;
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		border-radius: 0;
-	}
-	.demo #tweets {font-size:0.7em;}
-}
-</style>
+        }
+        #page_status {
+                position:fixed;
+                left:1em;top:0;
+                max-width:14%;
+                font-size:0.7em;
+        }
+        #page_status .header a {display:none; }
+        .header h1:nth-of-type(1) {margin-top:0; }
+  }
+  /* small displays   --------------------------------------------------- */
+  @media only screen and (max-width: 550px) { 
+        body, table { font-size:16px; }
+        #nav {position:static;font-size:24px;}
+        #ini-logo {position:absolute;height:5em;}
+        #nav a { display:block; border-top:1px solid #aaa;border-right:0;}
+  }
+  </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type ="text/javascript"></script>
+  <script src="js/jquery.scrollTo-1.4.3.1-min.js"                               type ="text/javascript"></script>
+  <script src="js/jquery.nav.js"                                                type ="text/javascript"></script>
+  <script src="js/jquery.tweet.js"                                              type ="text/javascript"></script>
+</head>
+<body>
+  <div id="nav"></div>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
-        <script src="js/jquery.nav.js"></script>
-        <script language="javascript" src="js/jquery.tweet.js" type="text/javascript"></script>
-    </head>
-    <body>
+  <div id="ini-logo">
+    <a href="http://infoini.de"><img src="img/inilogo_140x140.png"></a>
+  </div>
 
-		<div id="nav"></div>	
-		<div id="ini-logo">
-			<a href="http://infoini.de"><img src="img/inilogo_140x140.png"/></a>
-		</div>
+  <div class="page" id="page_status">
+    <div class="header">
+      <h1>Status</h1>
+    </div>
 
-        <div class="page" id="page_status"> 
-			<div class="header">
-				<h1>Status</h1>
-			</div>
-            <div class="main">
-                <div class="row" align="center">
-					<b>Kaffee Füllstand</b>
-				</div>
-				<div class="row alt">
-					<div class="cafe_bar" id="kanne1">...</div>
-				</div>
-				<div class="row alt">
-					<div class="cafe_bar" id="kanne2">...</div>
-				</div>
-            </div>
-			&nbsp;
-            <div class="main noDemo">
-                <div class="row">
-					<div id="tuer">
-						Tür ...
-					</div>
-				</div>
-                <div class="row alt" align="right">
-					<a href="/api/raumplan.pdf">Raumplan (pdf)</a>
-				</div>
-                <div class="row" align="right">
-					<a href="/api/zuendstoff.pdf">Zündstoff (pdf)</a>
-				</div>
-			</div>
+    <div class="main">
+      <div class="row" align="center">
+        <b>Kaffee Füllstand</b>
+      </div>
+
+      <div class="row alt">
+        <div class="cafe_bar" id="kanne1">
+          ...
         </div>
+      </div>
 
-        <div class="page" id="page_donate"> 
-			<div class="header">
-				<h1>Spenden</h1>
-			</div>
-            <div class="main">
-				<div class="row">
-					<div class="content">
-						<table width="100%">
-							<tr>
-								<td style="width:10em;">Kaffee</td>
-								<td align="right">30¢</td>
-							</tr>
-							<tr>
-								<td style="width:10em;">Club Mate</td>
-								<td align="right">1,00€</td>
-							</tr>
-							<tr>
-								<td style="width:10em">YumYum</td>
-								<td align="right">50¢</td>
-							</tr>
-							<tr>
-								<td>Kopie</td>
-								<td align="right">5¢<td>
-							</tr>
-						</table>
-					</div>
-				</div>
-            </div>
+      <div class="row alt">
+        <div class="cafe_bar" id="kanne2">
+          ...
         </div>
-
-
-        <div class="page" id="page_news"> 
-			<div class="header">
-				<h1>News</h1>
-			</div>
-            <div class="main">
-				<div class="row">
-					<div class="content" id="news"></div>
-				</div>
-                <div class="row alt" align="right">
-					<a href="/redmine/projects/fsropen/news">Alle News</a>
-				</div>
-            </div>
+      </div>
+    </div>
+    &nbsp;
+    <div class="main noDemo">
+      <div class="row">
+        <div id="tuer">
+          Tür ...
         </div>
+      </div>
 
+      <div class="row alt" align="right">
+        <a href="/api/raumplan.pdf">Raumplan (pdf)</a>
+      </div>
 
-        <div class="page" id="page_mensa"> 
-			<div class="header">
-				<h1>Mensa</h1>
-			</div>
-            <div class="main">
-                <div class="row">
-					<div id="speiseplan" class="content">
-						<script type="text/javascript" src="http://www.studentenwerk-berlin.de/speiseplan/js/beuth/tag/kurz/0"></script>
-					</div>
-                </div>
-            </div>
+      <div class="row" align="right">
+        <a href="/api/zuendstoff.pdf">Zündstoff (pdf)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page_donate">
+    <div class="header">
+      <h1>Spenden</h1>
+    </div>
+
+    <div class="main">
+      <div class="row">
+        <div class="content">
+          <table width="100%">
+            <tr>
+              <td style="width:10em;">Kaffee</td>
+
+              <td align="right">30¢</td>
+            </tr>
+
+            <tr>
+              <td style="width:10em;">Club Mate</td>
+
+              <td align="right">1,00€</td>
+            </tr>
+
+            <tr>
+              <td style="width:10em">YumYum</td>
+
+              <td align="right">50¢</td>
+            </tr>
+
+            <tr>
+              <td>Kopie</td>
+
+              <td align="right">5¢</td>
+
+              <td></td>
+            </tr>
+          </table>
         </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="page" id="page_news">
+    <div class="header">
+      <h1>News</h1>
+    </div>
 
+    <div class="main">
+      <div class="row">
+        <div class="content" id="news"></div>
+      </div>
 
+      <div class="row alt" align="right">
+        <a href="/redmine/projects/fsropen/news">Alle News</a>
+      </div>
+    </div>
+  </div>
 
-        <div class="page" id="page_tweets"> 
-			<div class="header">
-                <h1>Tweets</h1>
-			</div>
-            <div class="main ">
-                <div id="tweets">Loading...</div>
-				<div class="row alt" align="right">
-					Twitter: <a href="http://twitter.com/InfoINI/">@infoINI</a>
-				</div>
-            </div>
-        </div>
+  <div class="page" id="page_mensa">
+    <div class="header">
+      <h1>Mensa</h1>
+    </div>
 
-        <div class="page demoOnly" id="page_qr"> 
-			<div class="header">
-				<h1>QR</h1>
-			</div>
-            <div class="main">
-                <div class="row" align="center">
-                    <img src="img/qr-link.png" width="600"/>
-                </div>
-            </div>
-        </div>
-
-        <div class="page footer"> 
-			<p>
-				Getestet mit Firefox 18, Chromium 24, Nokia N9
-			</p>
-			<p>
-				Wenn Anpassungen an andere Geräte nötig,
-                                meldet euch bei einem der Mitlgieder im
-                                Projekt <a href="http://infoini.de/redmine/projects/webapp">Projekt</a>
-			</p>
-        </div>
-
-<!-- included script for faster loading -->
-<script>
-$(document).ready(function() {
-
-	// tuer / cafe status
-	var onSuccess_status = function(data,textStatus) {
-		var setLevel = function(bar, level)  {
-			var percent=level+'%'
-			bar.text(percent);
-			bar.animate({'width':percent},600);
-
-		};
-		var setTuer = function(open)  {
-			var t = $('#tuer');
-			t.addClass(open?'open':'closed');
-			t.text('Tür '+ (open?'offen':'geschlossen'));
-		};
-
-		setTuer(data.status == "OPEN");
-		setLevel($('#kanne1'),data.pots[0].level || 0);
-		setLevel($('#kanne2'),data.pots[1].level || 0);
-	};
-
-	var onSuccess_news = function(data,textStatus) {
-		var items = [];
-		var $xml = $(data);
-		$xml.find("entry").each(function() {
-			var $this = $(this),
-				item = {
-					title: $this.find("title").text(),
-					link: $this.find("link").attr('href'),
-					content: $this.find("content").text(),
-					updated: $this.find("updated").text(),
-					author: $this.find("author>name").text()
-			}
-			items.push(item);
-		});
-
-		$('#news').html('');
-		for(var i in items) {
-			var title = '<b>'+items[i].title+'</b>';
-			var content = '<p>'+items[i].content+'</p>';
-			var newsitem = '<div>'+title + content+'</div>';
-			$('#news').append(newsitem);
-			if(i==0) break; // only one item for now
-		}
-	};
-
-	var update = function() {
-		$.ajax('/api/combined.json',{success:onSuccess_status,cache:false,ifModified:false} );
-	};
-	var updateInterval = 60 * 1000;
-	var updateSlow = function() {
-		$.get('/redmine/projects/fsropen/news.atom',{}, onSuccess_news);
-		$("#tweets").tweet({
-			query:'infoini',
-			avatar_size: 256,
-			count: 4,
-			loading_text: "loading tweets..."
-		});
-	};
-	var updateSlowInterval = 60 * 1000;
-
-
-	// scroll through pages if called with ?demo
-	if(window.location.search == '?demo') {
-		// increase update freq
-		updateInterval = 5 * 1000;
-
-		// hide scrollbars, handle scrolling
-		$('body').css('overflow','hidden').addClass('demo');
-
-		// hide irelevant content
-		$('.noDemo').hide();
-		$('.demoOnly').show();
-
-		var navLinkCurrent = 1;
-		window.setInterval(function() {
-                        var navLinks = $('#nav a:visible').get();
-			navLinks[navLinkCurrent].click();	
-			navLinkCurrent++;
-			navLinkCurrent%=navLinks.length;
-		},20*1000);
-	}
-
-	// refresh
-	setInterval(update,updateInterval);
-	setInterval(updateSlow,updateSlowInterval);
-
-
-	update();
-	updateSlow();
-
-	// navigation
-	$('.page:has(.header):visible').each(function(i) {
-		var text = $(this).find('.header').text();
-		var o = $('<a href="#'+$(this).attr('id')+'">'+text+'</a>');
-		//var page = this;
-		//o.click(function(e) {
-		//	e.preventDefault();	
-		//	$.scrollTo(page,600);
-		//});
-		$('#nav').append(o);
-	});
-	$('#nav').onePageNav({    scrollOffset: 40 });
-	$('.page .header h1').each(function(i) {
-		var up = $('<a href="#" class="up">↥</a>');
-		$(this).prepend(up);
-		up.click(function(e) {
-			e.preventDefault();	
-			$.scrollTo(0,600);
-		});
-	});
-});
+    <div class="main">
+      <div class="row">
+        <div id="speiseplan" class="content">
+          <script type="text/javascript" src="http://www.studentenwerk-berlin.de/speiseplan/js/beuth/tag/kurz/0">
 </script>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    </body>
+  <div class="page" id="page_tweets">
+    <div class="header">
+      <h1>Tweets</h1>
+    </div>
+
+    <div class="main">
+      <div id="tweets">
+        Loading...
+      </div>
+
+      <div class="row alt" align="right">
+        Twitter: <a href="http://twitter.com/InfoINI/">@infoINI</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page demoOnly" id="page_qr">
+    <div class="header">
+      <h1>QR-Code</h1>
+    </div>
+
+    <div class="main">
+      <div class="row" align="center"><img src="img/qr-link.png" width="600"></div>
+      <div class="row alt" align="center">Link zur Web-App</div>
+    </div>
+  </div>
+
+  <div class="page footer">
+    <p>Getestet mit Firefox 18, Chromium 24, Nokia N9</p>
+
+    <p>Wenn Anpassungen an andere Geräte nötig sind, meldet euch bei einem der Mitlgieder im <a href="http://infoini.de/redmine/projects/webapp">Projekt</a></p>
+  </div><!-- included script for faster loading -->
+  <script type="text/javascript">
+$(document).ready(function() {
+    // tuer / cafe status
+    var onSuccess_status = function(data,textStatus) {
+            var setLevel = function(bar, level)  {
+                    var percent=level+'%'
+                    bar.text(percent);
+                    bar.animate({'width':percent},600);
+
+            };
+            var setTuer = function(open)  {
+                    var t = $('#tuer');
+                    t.addClass(open?'open':'closed');
+                    t.text('Tür '+ (open?'offen':'geschlossen'));
+            };
+
+            setTuer(data.status == "OPEN");
+            setLevel($('#kanne1'),data.pots[0].level || 0);
+            setLevel($('#kanne2'),data.pots[1].level || 0);
+    };
+
+    var onSuccess_news = function(data,textStatus) {
+            var items = [];
+            var $xml = $(data);
+            $xml.find("entry").each(function() {
+                    var $this = $(this),
+                            item = {
+                                    title: $this.find("title").text(),
+                                    link: $this.find("link").attr('href'),
+                                    content: $this.find("content").text(),
+                                    updated: $this.find("updated").text(),
+                                    author: $this.find("author>name").text()
+                    }
+                    items.push(item);
+            });
+
+            $('#news').html('');
+            for(var i in items) {
+                    var title = '<b>'+items[i].title+'<\/b>';
+                    var content = '<p>'+items[i].content+'<\/p>';
+                    var newsitem = '<div>'+title + content+'<\/div>';
+                    $('#news').append(newsitem);
+                    if(i==0) break; // only one item for now
+            }
+    };
+
+    var update = function() {
+            $.ajax('/api/combined.json',{success:onSuccess_status,cache:false,ifModified:false} );
+    };
+    var updateInterval = 60 * 1000;
+    var updateSlow = function() {
+            $.get('/redmine/projects/fsropen/news.atom',{}, onSuccess_news);
+            $("#tweets").tweet({
+                    query:'infoini',
+                    avatar_size: 256,
+                    count: 4,
+                    loading_text: "loading tweets..."
+            });
+    };
+    var updateSlowInterval = 60 * 1000;
+
+
+    // scroll through pages if called with ?demo
+    if(window.location.search == '?demo') {
+            // increase update freq
+            updateInterval = 5 * 1000;
+
+            // hide scrollbars, handle scrolling
+            $('body').css('overflow','hidden').addClass('demo');
+
+            // hide irelevant content
+            $('.noDemo').hide();
+            $('.demoOnly').show();
+
+            var navLinkCurrent = 1;
+            window.setInterval(function() {
+                    var navLinks = $('#nav a:visible').get();
+                    navLinks[navLinkCurrent].click();       
+                    navLinkCurrent++;
+                    navLinkCurrent%=navLinks.length;
+            },20*1000);
+    }
+
+    // refresh
+    update();
+    setInterval(update,updateInterval);
+    updateSlow();
+    setInterval(updateSlow,updateSlowInterval);
+
+
+    // navigation
+    $('.page:has(.header):visible').each(function(i) {
+            var text = $(this).find('.header').text();
+            var o = $('<a href="#'+$(this).attr('id')+'">'+text+'<\/a>');
+            $('#nav').append(o);
+    });
+    $('#nav').onePageNav({    scrollOffset: 40, scrollOffset: 300 });
+    $('.page .header h1').each(function(i) {
+            var up = $('<a href="#" class="up">↥<\/a>');
+            $(this).prepend(up);
+            up.click(function(e) {
+                    e.preventDefault();
+                    $.scrollTo(0,600);
+            });
+    });
+});
+  </script>
+</body>
 </html>
