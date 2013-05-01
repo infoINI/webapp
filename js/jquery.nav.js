@@ -167,9 +167,9 @@
 				$.scrollTo(newLoc, self.config.scrollSpeed, {
 					axis: 'y',
 					easing: self.config.easing,
-					offset: {
-						top: -self.config.scrollOffset
-					},
+					//offset: {
+					//	top: -self.config.scrollOffset
+					//},
 					onAfter: function() {
 						//Do we need to change the hash?
 						if(self.config.changeHash) {
