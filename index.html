@@ -150,7 +150,22 @@ body, div, html,h1 {margin:0;padding:0; }
                 -moz-border-radius: 0;
                 border-radius: 0;
         }
-        .demo #tweets {font-size:0.7em;}
+        .demo #tweets {font-size:0.9em;}
+		.demo #page_status {
+			position:fixed;
+			left:0;
+			bottom:0;
+			background-color:#eee;
+			-webkit-border-radius: 5px 0;
+			-moz-border-radius: 0;
+			border-radius: 0 0.4em 0 0;
+			overflow: hidden;
+			box-shadow: 0 0 0.4em #666;
+
+		}
+		.demo #page_status .header {
+			display:none;
+		}
   }
   /* big displays     --------------------------------------------------- */
   @media only screen and (min-width: 1000px) { 
@@ -227,7 +242,6 @@ body, div, html,h1 {margin:0;padding:0; }
         </div>
       </div>
     </div>
-    &nbsp;
     <div class="main noDemo">
       <div class="row">
         <div id="tuer">
@@ -436,8 +450,9 @@ $(document).ready(function() {
     var updateSlowInterval = 60 * 1000;
 
 
+	var demo =window.location.search == '?demo';
     // scroll through pages if called with ?demo
-    if(window.location.search == '?demo') {
+    if(demo) {
             // increase update freq
             updateInterval = 5 * 1000;
 
@@ -465,7 +480,7 @@ $(document).ready(function() {
 
 
     // navigation
-    $('.page:has(.header):visible').each(function(i) {
+    $('.page:has(.header:visible):visible').each(function(i) {
             var text = $(this).find('.header').text();
             var o = $('<a href="#'+$(this).attr('id')+'">'+text+'<\/a>');
             $('#nav').append(o);
