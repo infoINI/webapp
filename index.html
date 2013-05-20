@@ -88,6 +88,16 @@ body, div, html,h1 {margin:0;padding:0; }
   .col.right         { float:right;}
   .clear             { clear:both;}
 
+  /* members          --------------------------------------------------- */
+  .member_img {
+	  height:6em;
+  }
+  .member {
+	  width:25%;
+	  float:left;
+	  height:12em;
+	  font-size:0.7em;
+  }
   /* twitter          --------------------------------------------------- */
   #tweets .tweet_avatar img{
     vertical-align:top;
@@ -322,14 +332,25 @@ body, div, html,h1 {margin:0;padding:0; }
     </div>
   </div>
 
+  <div class="page" id="page_members">
+    <div class="header">
+      <h1>Mitglieder</h1>
+    </div>
+    <div class="main">
+      <div class="row"></div>
+    </div>
+	<div style="clear:both;"></div>
+  </div>
+
+
   <div class="page demoOnly" id="page_qr">
     <div class="header">
       <h1>QR-Code</h1>
     </div>
 
     <div class="main">
-      <div class="row" align="center"><img src="img/qr-link.png" width="600"></div>
-      <div class="row alt" align="center">Link zur Web-App</div>
+      <div class="row" align="center">Link zur Web-App</div>
+      <div class="row alt" align="center"><img src="img/qr-link.png" width="500"></div>
     </div>
   </div>
 
@@ -358,6 +379,21 @@ $(document).ready(function() {
             setLevel($('#kanne1'),data.pots[0].level || 0);
             setLevel($('#kanne2'),data.pots[1].level || 0);
     };
+
+	$.ajax('/api/members.json',{'success':function(data,textStatus) {
+			$(data.members).each(function(i,d) {
+				console.log(d);
+				var position = '<div>'+d.position+'</div>';
+				var fullname = '<div>'+d.firstname+' '+d.lastname+'</div>';
+				var image = '<div><img src="'+d.photo_url+'" class="member_img"/></div>';
+				var member = '<div class="row member">'+image + fullname+position+'</div>';
+				$('#page_members .main').append(member);
+			});
+		},cache:false,ifModified:false,
+		error: function(jqXHR, textStatus, errorThrown) {
+		console.log('error: '+errorThrown);
+	}});
+
 
     var onSuccess_news = function(data,textStatus) {
             var items = [];
