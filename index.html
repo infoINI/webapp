@@ -155,9 +155,13 @@ body, div, html,h1 {margin:0;padding:0; }
   #speiseplan .mensa_additional_information,
   #speiseplan .zusatz {display:none;}
 
+  /* news             --------------------------------------------------- */
+  #news h2 {padding:0;margin:0;}
+  #news p {padding:0;margin:0;margin-bottom:0.6em;text-align:justify;}
+
   /* demo mode        --------------------------------------------------- */
   .demoOnly {display:none;}
-  body.demo, .demo table { font-size:48px; }
+  body.demo, .demo table { font-size:44px; }
   @media only screen and (min-width: 1200px) and (max-width:1499px) {
         .demo .page { margin:0 ; width:auto; }
         .demo .main {
@@ -166,15 +170,17 @@ body, div, html,h1 {margin:0;padding:0; }
                 -moz-border-radius: 0;
                 border-radius: 0;
         }
+		.demo #news {font-size:0.9em;}
         .demo #tweets {font-size:0.9em;}
 		.demo #page_status {
 			position:fixed;
-			left:0;
+			right:0;
 			bottom:0;
+			font-size:0.9em;
 			background-color:#eee;
 			-webkit-border-radius: 5px 0;
 			-moz-border-radius: 0;
-			border-radius: 0 0.4em 0 0;
+			border-radius:  0.4em 0 0 0;
 			overflow: hidden;
 			box-shadow: 0 0 0.4em #666;
 
@@ -454,9 +460,9 @@ $(document).ready(function() {
 
             $('#news').html('');
             for(var i in items) {
-                    var title = '<b>'+items[i].title+'<\/b>';
-                    var content = '<p>'+items[i].content+'<\/p>';
-                    var newsitem = '<div>'+title + content+'<\/div>';
+                    var title = '<h2>'+items[i].title+'</h2>';
+                    var content = '<p>'+items[i].content+'</p>';
+                    var newsitem = '<div>'+title + content+'</div>';
                     $('#news').append(newsitem);
                     if(i==0) break; // only one item for now
             }
