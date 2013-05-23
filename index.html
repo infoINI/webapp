@@ -89,15 +89,30 @@ body, div, html,h1 {margin:0;padding:0; }
   .clear             { clear:both;}
 
   /* members          --------------------------------------------------- */
+  #page_members .main{ background-color:#d8d8d8; }
   .member_img {
-	  height:6em;
+	  padding-right:0.2em;
+	  float:left;
+  }
+  .member_img img {
+	  height:5em;
+	  border-right:1px solid #999;
   }
   .member {
-	  width:25%;
+	  height:5em;
+	  width:50%;
 	  float:left;
-	  height:12em;
-	  font-size:0.7em;
+	  font-size:0.9em;
+	  cursor:pointer;
   }
+
+  .member_position, .member_mail, .member_course { color:#333;font-size:0.7em;font-style:italic;}
+  .member_mail, .member_course {display:none;}
+
+  .member.active { width:100%;font-size:1.4em; }
+  .active .member_mail, .active .member_course {display:block;}
+  .active .member_img img { }
+
   /* twitter          --------------------------------------------------- */
   #tweets .tweet_avatar img{
     vertical-align:top;
@@ -166,6 +181,7 @@ body, div, html,h1 {margin:0;padding:0; }
 		.demo #page_status .header {
 			display:none;
 		}
+		.demo .member {width:25%;font-size:0.6em;}
   }
   /* big displays     --------------------------------------------------- */
   @media only screen and (min-width: 1000px) { 
@@ -206,6 +222,10 @@ body, div, html,h1 {margin:0;padding:0; }
         #nav {position:static;font-size:24px;}
         #ini-logo {position:absolute;height:5em;}
         #nav a { display:block; border-top:1px solid #aaa;border-right:0;}
+		.member {width:auto;float:none;overflow:hidden;font-size:1.1em;}
+		.member.active {font-size:1.5em;height:auto;}
+	  .active .member_img { padding:0; float:none; }
+	  .active .member_img img { height:auto;width:100%; border:0; }
   }
   </style>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type ="text/javascript"></script>
@@ -396,11 +416,19 @@ $(document).ready(function() {
 
 	$.ajax('/api/members.json',{'success':function(data,textStatus) {
 			$(data.members).each(function(i,d) {
-				console.log(d);
-				var position = '<div>'+d.position+'</div>';
-				var fullname = '<div>'+d.firstname+' '+d.lastname+'</div>';
-				var image = '<div><img src="'+d.photo_url+'" class="member_img"/></div>';
-				var member = '<div class="row member">'+image + fullname+position+'</div>';
+				var content = ''
+					+'<div class="member_img"><img src="'+d.photo_url+'"/></div>'
+					+'<div class="member_name"><a name="#">'+d.firstname+' '+d.lastname+'</a></div>'
+					+'<div class="member_position">'+d.position+'</div>'
+					+'<div class="member_mail">✉ '+d.email+'</div>'
+					+'<div class="member_course">'+d.course_of_study+'</div>'
+					;
+
+				var member = $('<div class="row member '+((i%2==0)?'alt':'')+'">' + content + '</div>');
+				member.click(function() {
+					$('.member').removeClass('active');
+					member.addClass('active');	
+				});
 				$('#page_members .main').append(member);
 			});
 		},cache:false,ifModified:false,
