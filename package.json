@@ -1,0 +1,22 @@
+{
+  "name": "infoini-webapp",
+  "description": "infoini status page with useful informations",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "q": "*"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "webpack": "^1.1.2",
+    "webpack-dev-server": "^1.2.5",
+    "grunt-webpack": "^1.0.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "envify": "^1.2.1",
+    "react": "^0.10.0",
+    "jslint": "^0.3.1",
+    "grunt-jslint": "^1.1.8",
+    "grunt-contrib-connect": "^0.7.1"
+  }
+}

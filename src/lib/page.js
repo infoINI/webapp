@@ -1,0 +1,35 @@
+var React = require('react');
+
+
+module.exports = React.createClass({
+    // TODO simplify page structure
+    render: function () {
+        return this.transferPropsTo(React.DOM.div(
+            {className: 'page'},
+            React.DOM.div(
+                { className: 'header'},
+                React.DOM.div(
+                    { className: 'content'},
+                    React.DOM.h1(
+                        null,
+                        /*React.DOM.a({href:'#', className:'up'},'↥'),*/
+                        this.props.title
+                    )
+                )
+            ),
+            React.DOM.div(
+                { className: 'main'},
+                this.props.children
+            ),
+            React.DOM.div({ style: 'main', style: {clear: 'both'}})// TODO
+        ));
+    },
+    getDefaultProps: function () {
+        return {
+            title: 'Page',
+            id: 'noId'
+        };
+    }
+});
+
+

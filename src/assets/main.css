@@ -1,0 +1,242 @@
+body, div, html,h1 {margin:0;padding:0; }
+  * { font-family: Arial; color:#111; }
+  body { background-color:#fff; padding-bottom:5em; }
+  body, table { font-size:24px;}
+
+  a { color: #00555f; text-decoration:none; text-shadow: 0.05em 0.05em 0.1em #aaa;}
+  .footer p { font-size:0.5em;}
+
+  /* logo             --------------------------------------------------- */
+  #ini-logo {
+        position: fixed;
+        z-index: 100;
+        top: 4px;
+        right: 15px;
+        height:2.2em;
+  }
+  #ini-logo img {
+    max-width:100%;max-height:100%;
+    box-shadow: 0 0 0.4em #666;
+    border-radius: 0.2em;
+  }
+
+  /* navigation       --------------------------------------------------- */
+  #nav {
+    border-bottom:1px solid #aaa;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ddd;
+    z-index: 100;
+    text-shadow: 0.05em 0.05em 0.1em #aaa;
+    box-shadow: 0 0 0.4em #666;
+    /* http://www.colorzilla.com/gradient-editor/ */
+    background: #ddd;
+    background: -moz-linear-gradient(top, #ffffff 0%, #d6d6d6 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#d6d6d6));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#d6d6d6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d6d6d6',GradientType=0 );
+  }
+  #nav a {
+    display:inline-block;
+    padding:0.2em;
+    border-right:1px solid #aaa;
+  }
+  #nav a:hover, #nav a.current { background-color:#fff;}
+
+  /* pages            --------------------------------------------------- */
+  .header {}
+  .content {padding:0.3em;}
+  .header h1 {
+    font-size:2em;
+    text-shadow: 0.05em 0.05em 0.1em #aaa;
+    margin-top:1em;
+  }
+  .header .up       { float:right;color:#aaa;}
+  .header .up:hover { color: #00555f;}
+  .page             { margin-bottom:1em; margin-top:1em; }
+  .main             { border-top:1px solid #ccc; }
+  .content          { padding:10px; }
+  .row {
+    border-bottom:1px solid #aaa;
+    box-shadow: 0 0 0.4em #aaa;
+    background-color:#d8d8d8;
+  }
+  .alt               { background-color:#e8e8e8;}
+  .col               { width:50%;}
+  .col.left          { float:left;}
+  .col.left .content { border-right:1px solid #aaa;}
+  .col.right         { float:right;}
+  .clear             { clear:both;}
+
+  /* members          --------------------------------------------------- */
+  #page_members .main{ background-color:#d8d8d8;min-height:10em; }
+  #page_vote .main{ background-color:#d8d8d8;min-height:10em; }
+  .member_img {
+          padding-right:0.2em;
+          float:left;
+  }
+  .member_img img {
+          height:5em;
+          border-right:1px solid #999;
+  }
+  .member {
+          height:5em;
+          width:50%;
+          float:left;
+          font-size:0.9em;
+          cursor:pointer;
+  }
+
+  .member_position, .member_comment, .member_mail, .member_course { color:#333;font-size:0.7em;font-style:italic;}
+  .member_mail, .member_course {display:none;}
+
+  .member.active { width:100%;font-size:1.4em; }
+  .active .member_mail, .active .member_course {display:block;}
+  .active .member_img img { }
+
+
+  /* donate           --------------------------------------------------- */
+  #page_donate table,
+  #page_donate tr,
+  #page_donate td, {padding:0;margin:0;}
+
+  /* status           --------------------------------------------------- */
+  #page_status .main { font-size:1.2em;}
+  #page_status .frame_tuer { margin-top:1em;}
+  #tuer              { text-align:center;}
+  #tuer.open         { background-color:#0a0; }
+  #tuer.closed       { background-color:#c00; }
+  .cafe_bar { height:1.2em;position:relative;}
+  .cafe_bar .text {
+          position:absolute;
+          left:0;top:0;
+          text-align:center;
+          right:0;
+        z-index:4;
+  }
+  .cafe_bar .bar {
+        width:0;
+        background-color:#6F4E37;
+        height:1.2em;
+        z-index:3;
+  }
+  .qr_code { font-size:0.6em;}
+  .qr_code img { width:100%;}
+
+  /* stpeiseplan      --------------------------------------------------- */
+  #speiseplan *{ background-color:transparent; border:0; }
+  #speiseplan .mensa_day_speise_preis,
+  #speiseplan .side_dishes,
+  #speiseplan .mensa_additional_information,
+  #speiseplan .zusatz {display:none;}
+  #speiseplan .siegel {height:1em;}
+
+  /* news             --------------------------------------------------- */
+  #news h2 {padding:0;margin:0;}
+  #news p {padding:0;margin:0;margin-bottom:0.6em;text-align:justify;}
+
+  /* big displays     --------------------------------------------------- */
+  @media only screen and (min-width: 1000px) and (max-width: 1499px) { 
+        body, table { font-size:36px; }
+        .page { margin:0 auto; width:1000px; }
+        .main {
+                overflow:hidden;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+        }
+  }
+  /* hd-displays      --------------------------------------------------- */
+  .hdOnly {display:none;}
+  @media only screen and (min-width: 1500px) { 
+        .hdOnly {display:inline;}
+
+        /* base */
+        body, table { font-size:40px; }
+        body {margin-left:250px;}
+        #nav   { padding-top:220px; width:250px;font-size:0.8em;bottom:0;z-index:1; }
+        #nav a { display:block; border-top:1px solid #aaa;border-left:0;border-right:0;}
+        #ini-logo {
+            position: fixed;
+            z-index: 100;
+            top: 40px;
+            left: 50px;
+            height:auto;
+        }
+        .page {
+            margin-left:1em;
+            margin-right:0;
+            margin-top:2em;
+            width:auto;
+            box-shadow: 0 0 0.4em #666;
+        }
+        .main {
+            overflow:hidden;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+        .header h1:nth-of-type(1) {margin-top:0; }
+
+        /* status */
+        #page_status {
+            margin-left:0;
+            margin-bottom:0;
+            position:fixed;
+            left:0;bottom:0;
+            width:250px;
+            font-size:0.5em;
+            z-index:2;
+            background-color:#eee;
+            box-shadow: 0 0 0.4em #666;
+        }
+
+        #page_status .frame_tuer { margin-top:0;}
+        #page_status .header { display:none; }
+
+        /* member */
+        .member {width:25%;font-size:0.6em;}
+
+  }
+  /* small displays   --------------------------------------------------- */
+  @media only screen and (max-width: 550px) { 
+        body, table { font-size:16px; }
+        #nav {position:static;font-size:24px;}
+        #ini-logo {position:absolute;height:5em;}
+        #nav a { display:block; border-top:1px solid #aaa;border-right:0;}
+                .member {width:auto;float:none;overflow:hidden;font-size:1.1em;}
+                .member.active {font-size:1.5em;height:auto;}
+          .active .member_img { padding:0; float:none; }
+          .active .member_img img { height:auto;width:100%; border:0; }
+  }
+  /* demo mode        --------------------------------------------------- */
+  .demoOnly {display:none;}
+  .demo .demoOnly {display:default;}
+  .demo .noDemo {display:none;}
+  body.demo, .demo table { font-size:56px; }
+  body::-webkit-scrollbar{ display:none;}
+  @media only screen and (min-width: 1200px) {
+    .demo #nav { font-size:0.8em;}
+    .demo #page_status b {font-size:0.8em;}
+    .demo .qr_code { font-size:0.6em;}
+  }
+  /* store links      --------------------------------------------------- */
+  .store_link {
+    font-size:1.2em;
+    border-top:1px solid gray;
+    padding:0.4em;
+    border-bottom:1px solid gray;
+    /*background-color:#0a0;*/
+    margin-top:2em;
+    display:none;
+  }
+  .store_link img {height:1em;vertical-align:middle;}
+  .store_link .android {
+    
+  }
+
