@@ -13,7 +13,7 @@ module.exports = React.createClass({
                     React.DOM.h1(
                         null,
                         /*React.DOM.a({href:'#', className:'up'},'↥'),*/
-                        this.props.title
+                        this.props.pageTitle
                     )
                 )
             ),

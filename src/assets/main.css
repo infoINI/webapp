@@ -236,7 +236,21 @@ body, div, html,h1 {margin:0;padding:0; }
     display:none;
   }
   .store_link img {height:1em;vertical-align:middle;}
-  .store_link .android {
-    
-  }
+  .store_link .android {}
 
+.notification {
+    position: fixed;
+    bottom:5%;
+    left:30%;
+    right:30%;
+    background-color:#0a0;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    box-shadow: 0 0 0.4em #666;
+    border-radius: 10px;
+    padding: 2em;
+    z-index: 1000;
+    color:black;
+    font-weight: bold;
+    text-align: center;
+}
