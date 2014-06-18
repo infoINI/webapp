@@ -224,6 +224,10 @@ body, div, html,h1 {margin:0;padding:0; }
     .demo #nav { font-size:0.8em;}
     .demo #page_status b {font-size:0.8em;}
     .demo .qr_code { font-size:0.6em;}
+    .demo #page_status .symbol {
+      display: block;
+      font-size: 400%;
+    }
   }
   /* store links      --------------------------------------------------- */
   .store_link {

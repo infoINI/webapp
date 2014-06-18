@@ -227,7 +227,11 @@ var PageStatus = React.createClass({
             },
             React.DOM.div(
                 { className: 'row', style: { textAlign: 'center' }},
-                React.DOM.b(null, 'Kaffee Füllstand')
+                React.DOM.b(
+                    null,
+                    React.DOM.span({ className: 'symbol' }, '☕'),
+                    ' Kaffee Füllstand'
+                )
             ),
             React.DOM.div(
                 { className: 'row alt cafe_bar', id: 'kanne1' },
