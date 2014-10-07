@@ -263,3 +263,6 @@ body, div, html,h1 {margin:0;padding:0; }
     text-align: center;
 }
 
+#ringvorlesung .row {
+    padding: 0.2em;
+}

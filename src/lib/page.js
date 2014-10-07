@@ -2,7 +2,6 @@ var React = require('react');
 
 
 module.exports = React.createClass({
-    // TODO simplify page structure
     render: function () {
         return this.transferPropsTo(React.DOM.div(
             {className: 'page'},
@@ -21,7 +20,7 @@ module.exports = React.createClass({
                 { className: 'main'},
                 this.props.children
             ),
-            React.DOM.div({ style: {clear: 'both'}}) // TODO
+            React.DOM.div({ style: {clear: 'both'}})
         ));
     },
     getDefaultProps: function () {
