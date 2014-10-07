@@ -6,17 +6,94 @@ var React = require('react');
 var io = require('socket.io-client');
 window.io = io;
 
+
 var Page = require('./lib/page.js');
 
+var LinkMore = React.createClass({
+    render: function () {
+        return React.DOM.div(
+            {
+                className: 'linkMore row noDemo'
+            },
+            React.DOM.a({ href: this.props.link }, this.props.text)
+        );
+    },
+    getDefaultProps: function () {
+        return {
+            text: 'Mehr...',
+            link: '#'
+        };
+    }
+});
+
+var PageDonations = React.createClass({
+    render: function () {
+        return this.transferPropsTo(Page(
+            null,
+            this.renderItems()
+        ));
+    },
+    renderItem: function (item) {
+        return React.DOM.tr(
+            {
+                className: 'row'
+            },
+            React.DOM.td(null, item.item),
+            React.DOM.td({ style: { textAlign: 'right' }}, item.price.toFixed(2) + ' €')
+        );
+    },
+    renderItems: function () {
+        if (!this.state.items) {
+            return '...';
+        }
+
+        var items = this.state.items.map(this.renderItem);
+
+        return React.DOM.table(
+            {
+                style: {
+                    width: '100%',
+                    padding: '0.5em'
+                },
+                className: 'row'
+            },
+            React.DOM.tbody(null, items)
+        );
+    },
+    getDefaultProps: function () {
+        return {
+            pageTitle: 'Spenden',
+            url: 'http://infoini.de/api/donations.json'
+        };
+    },
+    getInitialState: function () {
+        return {
+            items: false
+        };
+    },
+    getData: function () {
+        var component = this;
+        Q($.getJSON(this.props.url)).then(function (data) {
+            console.log(data);
+            component.setState({items: data.donations});
+        }).fail(function (a) {
+            console.error(a);
+        }).done();
+    },
+    componentDidMount: function () {
+        this.getData();
+    }
+});
 
 var PageStock = React.createClass({
     render: function () {
         return this.transferPropsTo(Page(
-            {
-                id: 'stock',
-                pageTitle: 'Bestand'
-            },
-            this.renderItems()
+            null,
+            this.renderItems(),
+            LinkMore({
+                text: 'Verlauf',
+                link: 'http://infoini.de/munin/infoini/infoini/cafe_stock.html'
+            })
         ));
     },
     renderItems: function () {
@@ -27,18 +104,11 @@ var PageStock = React.createClass({
             return React.DOM.table(
                 {
                     style: {
-                        width: '100%'
+                        width: '100%',
+                        padding: '0.5em'
                     },
                     className: 'row'
                 },
-                React.DOM.thead(
-                    null,
-                    React.DOM.tr(
-                        {style: { fontWeight: 'bold'}},
-                        React.DOM.td({style: {width: '70%'}}, 'Artikel'),
-                        React.DOM.td({}, 'Bestand')
-                    )
-                ),
                 React.DOM.tbody(null, items)
             );
         }
@@ -50,11 +120,13 @@ var PageStock = React.createClass({
                 className: 'row'
             },
             React.DOM.td(null, item.name),
-            React.DOM.td(null, item.count)
+            React.DOM.td({ style: { textAlign: 'right' }}, item.count)
         );
     },
     getDefaultProps: function () {
         return {
+            id: 'stock',
+            pageTitle: 'Bestand',
             urlStock: '//infoini.de/api/stock.json'
         };
     },
@@ -80,23 +152,23 @@ var PageStock = React.createClass({
 var PageNews = React.createClass({
     render: function () {
         return this.transferPropsTo(Page(
-            {
-                id: 'news',
-                pageTitle: 'News'
-            },
+            null,
             this.renderNews(),
             React.DOM.div(
                 { className: 'row alt noDemo' },
-                React.DOM.div(
-                    { className: 'content'},
-                    React.DOM.a({href: 'http://infoini.de/redmine/projects/fsropen/news'}, 'Alle News')
-                )
+                LinkMore({link: 'http://infoini.de/redmine/projects/fsropen/news', text: 'Alle News' })
             )
         ));
     },
     getInitialState: function () {
         return {
             items: null
+        };
+    },
+    getDefaultProps: function () {
+        return {
+            id: 'news',
+            pageTitle: 'News'
         };
     },
     componentDidMount: function () {
@@ -150,8 +222,8 @@ var Member = React.createClass({
             React.DOM.div({className: 'member_img'}, React.DOM.img({src: this.props.photo_url})),
             React.DOM.div({className: 'member_name'}, React.DOM.a({name: ''}, this.props.firstname + ' ' + this.props.lastname)),
             React.DOM.div({className: 'member_position'}, this.props.position),
-            React.DOM.div({className: 'member_mail'}, '✉' + this.props.email),
-            React.DOM.div({className: 'member_course'}, '✉' + this.props.course_of_study)
+            React.DOM.div({className: 'member_mail'}, '✉ ' + this.props.email),
+            React.DOM.div({className: 'member_course'}, this.props.course_of_study)
         );
 
     },
@@ -168,10 +240,7 @@ var PageMember = React.createClass({
     render: function () {
         return this.transferPropsTo(
             Page(
-                {
-                    id: 'member',
-                    pageTitle: 'Mitglieder'
-                },
+                null,
                 this.renderMembers()
             )
         );
@@ -193,7 +262,7 @@ var PageMember = React.createClass({
 
         var c = this;
         c.setState({loading: true});
-        $.get('http://infoini.de/api/members.json', function (data) {
+        $.get(this.props.url, function (data) {
             c.setState({loading: false});
             c.setState({items: data.members});
         });
@@ -212,19 +281,23 @@ var PageMember = React.createClass({
             items: false,
             loading: false
         };
+    },
+    getDefaultProps: function () {
+        return {
+            id: 'member',
+            pageTitle: 'Mitglieder'
+        };
     }
 });
 
+// qr code contains link to the webapp: http://infoini.de/webapp/
 var qr_code_data = "data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAANgAAADYCAIAAAAGQrq6AAAABnRSTlMA/gABAP1bbA07AAAD7klE%20QVR4nO3dQYpjORBAwfIw979yzQk0oCbVejIR2y7Md/uhRSJ9fX5/f3/gtn9uPwD8/AiRCCGSIEQS%20hEiCEEkQIgn/rv7h8/n8zef4Y6s56Onn352/rp5n9/lvfd8pq+e3IpIgRBKESIIQSRAiCUIkQYgk%20LOeIK7f2L+7OyabmbVPzwlte+b2siCQIkQQhkiBEEoRIghBJECIJ23PElan52dTca2o/3+nvtfuc%20U2q/lxWRBCGSIEQShEiCEEkQIglCJGFsjlizO986Pb+8NS98hRWRBCGSIEQShEiCEEkQIglCJOFr%2054grt84dmxf+PysiCUIkQYgkCJEEIZIgRBKESMLYHLE2J7t1Hnmlth+x9ntZEUkQIglCJEGIJAiR%20BCGSIEQStueItXtEdp2+77g2d3zl97IikiBEEoRIghBJECIJQiRBiCQs54i1/Wq7pt6P+Moc7vXf%20y4pIghBJECIJQiRBiCQIkQQhkrCcI07dd3z6/pKV03O1V+aUp/c1TvVgRSRBiCQIkQQhkiBEEoRI%20ghBJuPZ+xN050+nzwq+b+l5T88JdVkQShEiCEEkQIglCJEGIJAiRhOPnmm/NpXbtPk9tf+Rpp39H%20KyIJQiRBiCQIkQQhkiBEEoRIwth+xF1Tc7jT+/B21eajK6fnoLt/b0UkQYgkCJEEIZIgRBKESIIQ%20SRi7r3nqPPKt88u37nFeOT13PL0/0vsReZIQSRAiCUIkQYgkCJEEIZIwth/x9Nyudi/IrfcR1ng/%20Il9FiCQIkQQhkiBEEoRIghBJ2L6veeX0frupfZC31PYX1s5xWxFJECIJQiRBiCQIkQQhkiBEEj63%205m21OeWUW+eFV07v+5xiRSRBiCQIkQQhkiBEEoRIghBJOL4f8dY55al9crfuTandH7P7+e5Z4UlC%20JEGIJAiRBCGSIEQShEjCtf2Ip9X22+06/fy33h/pnhXShEiCEEkQIglCJEGIJAiRhLH9iLfU7h0+%20fV575da+zylWRBKESIIQSRAiCUIkQYgkCJGE7fuaX3+f4q17lld/f/q+k9Of41wzX0WIJAiRBCGS%20IEQShEiCEEnYniOu1OZhpz//1lzzlfcd7rIikiBEEoRIghBJECIJQiRBiCSMzRFfcWveWTsfXZtf%20WhFJECIJQiRBiCQIkQQhkiBEEr52jvjKfcort+6JnppHumeFJwmRBCGSIEQShEiCEEkQIgljc8Ta%20Pci159l1ev/ilKn/ZysiCUIkQYgkCJEEIZIgRBKESML2HPGVe5xr+/ZuuXVviv2IPEmIJAiRBCGS%20IEQShEiCEEn4vDIP47tZEUkQIglCJEGIJAiRBCGSIEQS/gMnD1r53HbJsQAAAABJRU5ErkJggg==";
 
 
 var PageStatus = React.createClass({
     render: function () {
-        return Page(
-            {
-                id: 'page_status',
-                pageTitle: 'Status'
-            },
+        return this.transferPropsTo(Page(
+            null,
             React.DOM.div(
                 { className: 'row', style: { textAlign: 'center' }},
                 React.DOM.b(
@@ -247,6 +320,7 @@ var PageStatus = React.createClass({
                     React.DOM.div({className: 'text'}, this.state.text2)
                 )
             ),
+            LinkMore({ link: 'http://infoini.de/munin/infoini/infoini/', text: 'Verlauf'}),
             React.DOM.div(
                 { className: 'main noDemo frame_tuer' },
                 React.DOM.div(
@@ -260,16 +334,16 @@ var PageStatus = React.createClass({
                 React.DOM.div(
                     { className: 'row' },
                     React.DOM.a({ href: '/api/zuendstoff.pdf' }, 'Zündstoff.pdf')
-                ),
-                React.DOM.div(
-                    { className: 'row alt hdOnly qr_code', style: {textAlign: 'center'} },
-                    React.DOM.img({ src: qr_code_data }),
-                    React.DOM.div({}, 'http://infoini.de/webapp/')
                 )
+            ),
+            React.DOM.div(
+                { className: 'row alt hdOnly qr_code', style: {textAlign: 'center'} },
+                React.DOM.img({ src: qr_code_data }),
+                React.DOM.div({}, 'http://infoini.de/webapp/')
             )
-        );
+        ));
     },
-    handleStatusUpdate: function (data) {
+    handleStatusUpdate: function (data, text, xhr) {
         var open = data.status === 'OPEN';
         var level1 = data.pots[0].level || 0;
         var level2 = data.pots[1].level || 0;
@@ -298,6 +372,12 @@ var PageStatus = React.createClass({
             text2: '???',
             classTuer: '',
             textTuer: ''
+        };
+    },
+    getDefaultProps: function () {
+        return {
+            id: 'page_status',
+            pageTitle: 'Status'
         };
     }
 });
@@ -342,8 +422,17 @@ var App = React.createClass({
             Notification({ref: 'notification'}),
             PageStatus(),
             PageNews(),
-            PageStock({ref: 'stock'}),
-            PageMember(),
+            PageDonations(),
+            //PageStock({ref: 'stock'}),
+            PageMember({
+                pageTitle: 'Mitglieder',
+                url: 'http://infoini.de/api/members.json'
+            }),
+            PageMember({
+                pageTitle: 'Helfer',
+                url: 'http://infoini.de/api/helpers.json',
+                id: 'helpers'
+            }),
             false
         );
     },
@@ -375,10 +464,11 @@ var App = React.createClass({
             UPDATE_INTERVAL = 5 * 1000;
 
             // hide scrollbars, handle scrolling
-            //$('body').addClass('demo'); //.css('overflow','hidden');
+            $('body').addClass('demo'); //.css('overflow','hidden');
 
             // hide irelevant content
             $('.noDemo').hide();
+
             //$('.demoOnly').show();
             setTimeout(location.reload, 4*60*60*1000);
     }

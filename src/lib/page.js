@@ -21,12 +21,12 @@ module.exports = React.createClass({
                 { className: 'main'},
                 this.props.children
             ),
-            React.DOM.div({ style: 'main', style: {clear: 'both'}})// TODO
+            React.DOM.div({ style: {clear: 'both'}}) // TODO
         ));
     },
     getDefaultProps: function () {
         return {
-            title: 'Page',
+            pageTitle: 'Page',
             id: 'noId'
         };
     }

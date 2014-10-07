@@ -73,6 +73,10 @@ body, div, html,h1 {margin:0;padding:0; }
   .col.right         { float:right;}
   .clear             { clear:both;}
 
+  .linkMore {
+    text-align: left;
+  }
+
   /* members          --------------------------------------------------- */
   #page_members .main{ background-color:#d8d8d8;min-height:10em; }
   #page_vote .main{ background-color:#d8d8d8;min-height:10em; }
@@ -218,7 +222,7 @@ body, div, html,h1 {margin:0;padding:0; }
   .demoOnly {display:none;}
   .demo .demoOnly {display:default;}
   .demo .noDemo {display:none;}
-  body.demo, .demo table { font-size:56px; }
+  body.demo, .demo table { font-size:46px; }
   body::-webkit-scrollbar{ display:none;}
   @media only screen and (min-width: 1200px) {
     .demo #nav { font-size:0.8em;}
@@ -258,3 +262,4 @@ body, div, html,h1 {margin:0;padding:0; }
     font-weight: bold;
     text-align: center;
 }
+
