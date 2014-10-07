@@ -17,12 +17,30 @@ module.exports = function(grunt) {
                 }
             }
         },
+        jslint: {
+            js: {
+                src: [
+                    'src/main.js',
+                    'src/lib/**/*.js'
+                ],
+                directives: {
+                    plusplus: true,
+                    vars: true,
+                    newcap: true,
+                    predef: [ '$' ],
+                    sloppy: true,
+                    node: true,
+                    white: true,
+                    browser: true
+                }
+            }
+        },
         watch: {
             js: {
                 files: [
                     'src/**/*.js',
                 ],
-                tasks: [ 'webpack' ],
+                tasks: [ 'jslint', 'webpack' ],
                 livereload: true
             },
             other: {
@@ -76,9 +94,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-jslint');
 
     // Default task(s).
-    grunt.registerTask('default', ['webpack:dev', 'copy']);
-    grunt.registerTask('dist', ['webpack:dist', 'copy']);
+    grunt.registerTask('default', ['jslint', 'webpack:dev', 'copy']);
+    grunt.registerTask('dist', ['jslint', 'webpack:dist', 'copy']);
     grunt.registerTask('develop', ['connect', 'watch']);
 };
