@@ -266,3 +266,7 @@ body, div, html,h1 {margin:0;padding:0; }
 #ringvorlesung .row {
     padding: 0.2em;
 }
+
+.snow {
+     text-shadow: 0.05em 0.05em 0.2em #666;
+}

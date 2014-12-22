@@ -85,5 +85,5 @@ function movesnow() {
 }
 
 for (i=0;i<=snowmax;i++) {
-    document.write("<span id='s"+i+"' style='position:fixed;top:-"+snowmaxsize+"px;'>"+snowletter+"</span>");
+    document.write("<span id='s"+i+"' class='snow' style='position:fixed;top:-"+snowmaxsize+"px;'>"+snowletter+"</span>");
 }
