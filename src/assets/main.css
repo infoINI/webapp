@@ -209,6 +209,8 @@ body, div, html,h1 {margin:0;padding:0; }
         #page_status .row.cafe_bar .bar {
             height:100px;
             font-size:60px;
+            -webkit-transition: width 1s;
+
         }
         #page_status .row:nth-child(1) {
             float: left;
