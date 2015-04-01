@@ -40,11 +40,11 @@ var App = React.createClass({
                 url: 'http://infoini.de/api/helpers.json',
                 id: 'helpers'
             }),
-            PageHtml({
-                pageTitle: 'Ringvorlesung',
-                url: 'http://infoini.de/api/ringvorlesung.html',
-                id: 'ringvorlesung'
-            }),
+            //PageHtml({
+            //    pageTitle: 'Ringvorlesung',
+            //    url: 'http://infoini.de/api/ringvorlesung.html',
+            //    id: 'ringvorlesung'
+            //}),
             false
         );
     },
