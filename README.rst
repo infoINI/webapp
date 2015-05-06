@@ -1,15 +1,19 @@
-Kommandos für RasPi
-===================
+infoINI Webapp
+==============
 
-// connecten
-ssh pi@raspi
+Die App läuft von kleinen Smartphones, Tablets, PCs und großen Info
+Bildschirmen.
 
-// display url
-DISPLAY=:0 chromium http://infoini.de/webapp/?demo
 
-// default site
-killall chromium
+Anzeige für den großen Bildschirm
+---------------------------------
 
-// display video
-omxplayer http://192.168.178.23/video.mp4
+Für automatisches Scrollen muss eine Option an die URL angehängt werden:
+``?demo``
+
+::
+
+    // display url
+    DISPLAY=:0 chromium http://infoini.de/webapp/?demo
+
 
