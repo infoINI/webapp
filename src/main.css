@@ -78,7 +78,7 @@ body, div, html,h1 {margin:0;padding:0; }
   }
 
   /* members          --------------------------------------------------- */
-  #page_members .main{ background-color:#d8d8d8;min-height:10em; }
+  .page_members .main{ background-color:#d8d8d8;min-height:10em; }
   #page_vote .main{ background-color:#d8d8d8;min-height:10em; }
   .member_img {
           padding-right:0.2em;
@@ -94,6 +94,7 @@ body, div, html,h1 {margin:0;padding:0; }
           float:left;
           font-size:0.9em;
           cursor:pointer;
+          transition:all 0.5s;
   }
 
   .member_position, .member_comment, .member_mail, .member_course { color:#333;font-size:0.7em;font-style:italic;}

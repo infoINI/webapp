@@ -1,0 +1,11 @@
+
+<page header='"Spenden"'>
+  <table class="row" style="width:100%;padding:0.5em;">
+    <tbody>
+      <tr ng-class='$even? "alt":""' ng-repeat='d in api.donations' class="row">
+        <td>{{ d.item }}</td>
+        <td style="text-align:right;" >{{ d.price |number:2 }} €</td>
+      </tr>
+    </tbody>
+  </table>
+</page>

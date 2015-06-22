@@ -1,0 +1,11 @@
+
+<page header='"Helfer"'>
+  <div >
+  <member
+  ng-class='($even? "alt ":"") + (active? "active":"inactive")'
+        class="row member"
+        ng-repeat="m in api.helpers" member='m'>
+  </member>
+  </div>
+</page>
+

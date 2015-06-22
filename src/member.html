@@ -1,0 +1,9 @@
+<div class='row member' ng-class='active?"active":""' ng-click='toggle()'>
+    <div class="member_img">
+      <img ng-src="{{ m.photo_url }}"/>
+    </div>
+    <div class="member_name">{{ m.firstname }} {{ m.lastname }}</div>
+    <div class="member_position">{{ m.position }}</div>
+    <div class="member_mail">✉ {{ m.email }}</div>
+    <div class="member_course">{{ m.course_of_study }}</div>
+</div>
