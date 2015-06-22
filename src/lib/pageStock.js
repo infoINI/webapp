@@ -11,7 +11,7 @@ var PageStock = React.createClass({
             this.renderItems(),
             LinkMore({
                 text: 'Verlauf',
-                link: 'http://infoini.de/munin/infoini/infoini/cafe_stock.html'
+                link: '//infoini.de/munin/infoini/infoini/cafe_stock.html'
             })
         ));
     },

@@ -10,7 +10,7 @@ var PageNews = React.createClass({
             this.renderNews(),
             React.DOM.div(
                 { className: 'row alt noDemo' },
-                LinkMore({link: 'http://infoini.de/redmine/projects/fsropen/news', text: 'Alle News' })
+                LinkMore({link: '//infoini.de/redmine/projects/fsropen/news', text: 'Alle News' })
             )
         ));
     },
@@ -29,7 +29,7 @@ var PageNews = React.createClass({
         this.getNews();
     },
     getNews: function () {
-        $.get('http://infoini.de/redmine/projects/fsropen/news.atom',{}, this.parseNews);
+        $.get('//infoini.de/redmine/projects/fsropen/news.atom',{}, this.parseNews);
         this.setState({loading: true});
     },
     parseNews: function (data) {

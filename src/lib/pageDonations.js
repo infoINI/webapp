@@ -40,7 +40,7 @@ var PageDonations = React.createClass({
     getDefaultProps: function () {
         return {
             pageTitle: 'Spenden',
-            url: 'http://infoini.de/api/donations.json'
+            url: '//infoini.de/api/donations.json'
         };
     },
     getInitialState: function () {

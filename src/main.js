@@ -3,8 +3,8 @@ require('./lib/isOnScreen.js');
 
 var Q = require('q');
 var React = require('react');
-var io = require('socket.io-client');
-window.io = io;
+//var io = require('socket.io-client');
+//window.io = io;
 
 
 var Page = require('./lib/page.js');
@@ -33,11 +33,11 @@ var App = React.createClass({
             //PageStock({ref: 'stock'}),
             PageMember({
                 pageTitle: 'Mitglieder',
-                url: 'http://infoini.de/api/members.json'
+                url: '/api/members.json'
             }),
             PageMember({
                 pageTitle: 'Helfer',
-                url: 'http://infoini.de/api/helpers.json',
+                url: '/api/helpers.json',
                 id: 'helpers'
             }),
             //PageHtml({
@@ -47,17 +47,6 @@ var App = React.createClass({
             //}),
             false
         );
-    },
-    componentDidMount: function () {
-        var component = this;
-        this.socket = io.connect('http://infoini.de:80');
-        this.socket.on('notify', function (data) {
-            console.log(data);
-            component.refs.notification.notify(data);
-            setTimeout(function () {
-                component.refs.stock.getData();
-            }, 1000);
-        });
     }
 });
 

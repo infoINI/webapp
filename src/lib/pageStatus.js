@@ -31,7 +31,7 @@ var PageStatus = React.createClass({
                     React.DOM.div({className: 'text'}, this.state.text2)
                 )
             ),
-            LinkMore({ link: 'http://infoini.de/munin/infoini/infoini/', text: 'Verlauf'}),
+            LinkMore({ link: '//infoini.de/munin/infoini/infoini/', text: 'Verlauf'}),
             React.DOM.div(
                 { className: 'main noDemo frame_tuer' },
                 React.DOM.div(
@@ -50,7 +50,7 @@ var PageStatus = React.createClass({
             React.DOM.div(
                 { className: 'row alt hdOnly qr_code', style: {textAlign: 'center'} },
                 React.DOM.img({ src: qr_code_data }),
-                React.DOM.div({}, 'http://infoini.de/webapp/')
+                React.DOM.div({}, '//infoini.de/webapp/')
             )
         ));
     },
@@ -72,7 +72,7 @@ var PageStatus = React.createClass({
         this.updateStatus();
     },
     updateStatus: function () {
-        $.getJSON('http://infoini.de/api/combined.json', this.handleStatusUpdate);
+        $.getJSON('//infoini.de/api/combined.json', this.handleStatusUpdate);
     },
     componentWillUnmount: function () {
         clearInterval(this.interval);
