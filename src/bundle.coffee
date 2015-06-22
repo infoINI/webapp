@@ -9,6 +9,7 @@ require './helpers.html'
 require './row.html'
 require './page.html'
 require './news.html'
+require './status.html'
 
 app.directive 'page', ->
   restrict: 'E'
@@ -33,26 +34,40 @@ app.directive 'member', ->
 
 app.config ($routeProvider,   $locationProvider) ->
   $routeProvider
-  .when('/members',
+  .when('/status'
+    templateUrl: 'status.html'
+    controller: 'StatusCtl'
+    name: 'Status'
+  )
+  .when('/members'
     templateUrl: 'members.html'
     controller: 'MembersCtl'
+    name: 'Mitglieder'
   )
-  .when('/helpers',
+  .when('/helpers'
     templateUrl: 'helpers.html'
     controller: 'HelpersCtl'
+    name: 'Helfer'
   )
   .when('/donations'
     templateUrl: 'donations.html'
     controller: 'DontationsCtl'
+    name: 'Spenden'
   )
   .when('/news'
     templateUrl: 'news.html'
     controller: 'NewsCtl'
+    name: 'News'
   )
   .when('/mensa'
     templateUrl: 'mensa.html'
+    controller: 'MensaCtl'
+    name: 'Mensa'
   )
-  .otherwise('/members')
+  .otherwise('/status')
+
+app.filter 'mensaPreisStudent', ->
+  (str) -> str.substring(4, str.indexOf('/')-1)
 
 app.service 'iniAPI', class Api
   constructor: (@$http) ->
@@ -60,24 +75,29 @@ app.service 'iniAPI', class Api
   getDonations: ->
     return @donations if @donations
     c = @
-    @$http.get('http://infoini.de/api/donations.json').success (res) ->
+    @$http.get('//infoini.de/api/donations.json').success (res) ->
       c.donations = res.donations
 
   getMembers: ->
     return @members if @members
-    @$http.get('http://infoini.de/api/members.json').success (res) =>
+    @$http.get('//infoini.de/api/members.json').success (res) =>
       @members = res.members
 
   getHelpers: ->
     return @helpers if @helpers
-    @$http.get('http://infoini.de/api/helpers.json').success (res) =>
+    @$http.get('//infoini.de/api/helpers.json').success (res) =>
       @helpers = res.members
 
   getNews: ->
     return @news if @news
-    newsUrl = 'http://infoini.de/redmine/projects/fsropen/news.json'
+    newsUrl = '//infoini.de/redmine/projects/fsropen/news.json'
     @$http.get(newsUrl).success (res) =>
       @news = res.news[0]
+
+  getMensa: ->
+    return @mensa if @mensa
+    @$http.get('//infoini.de/api/mensa.json').success (res) =>
+      @mensa = res
 
 
 
@@ -98,4 +118,45 @@ app.controller 'NewsCtl', ($scope, iniAPI) ->
   iniAPI.getNews()
   $scope.api = iniAPI
 
+app.controller 'MensaCtl', ($scope, iniAPI) ->
+  iniAPI.getMensa()
+  $scope.api = iniAPI
+
+app.controller 'StatusCtl', ($scope, iniAPI) ->
+  iniAPI.getMensa()
+  $scope.api = iniAPI
+
+app.controller 'NavCtl', ($scope, $route) ->
+  $scope.routes = $route.routes
+
+$(document).ready ->
+  demo = window.location.search == '?demo'
+
+  # scroll through pages if called with ?demo
+  if demo
+    # hide scrollbars, handle scrolling
+    $('body').addClass('demo') #.css('overflow','hidden')
+
+    # hide irelevant content
+    $('.noDemo').hide()
+    $('.demoOnly').show()
+    setTimeout(location.reload, 4*60*60*1000)
+
+
+
+
+  if demo
+    # autonav
+    navLinks = $('#nav a:visible').get()
+    navLinkCurrent = 1
+    slide = ->
+      navLinks[navLinkCurrent].click()
+      #$.scrollTo(navLinks[navLinkCurrent],600);
+      navLinkCurrent+=1
+      navLinkCurrent%=navLinks.length
+    setInterval(slide,20*1000)
+
+  # show store link on android
+  if navigator.userAgent.toLowerCase().indexOf("android") > -1
+    $('.store_link.android').show()
 

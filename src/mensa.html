@@ -1,8 +1,17 @@
 <page header='"Mensa"'>
-  <row>
-    <div id="speiseplan" class="content">
-      Heute...
-      <script type="text/javascript" src="http://www.studentenwerk-berlin.de/speiseplan/js/beuth/tag/kurz/0"></script>
+  <row ng-repeat='(date, content) in api.mensa' ng-if='$first'>
+    <strong>{{ date }}</strong>
+    <div style='padding-left:1em' ng-repeat='(category, foods) in content' ng-if='category != "Beilagen"'>
+      <strong>{{ category }}</strong>
+      <table style='width:100%'>
+        <tr ng-repeat='food in foods' >
+          <td>{{ food.title}}</td>
+          <td style='text-align:right;width:10%;'><small>{{ food.price |mensaPreisStudent }}</small></td>
+        </tr>
+      </table>
     </div>
+  </row>
+  <row>
+    <a href="http://www.studentenwerk-berlin.de/mensen/speiseplan/beuth/index.html">Zur Mensa Seite</a>
   </row>
 </page>

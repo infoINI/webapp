@@ -28,11 +28,15 @@
   </head>
   <body ng-app='iniWebapp'>
 
-    <a href='#/donations'>Spenden</a>
-    <a href='#/news'>News</a>
-    <a href='#/members'>Mitglieer</a>
-    <a href='#/helpers'>Helfer</a>
-    <a href='#/mensa'>Mensa</a>
+    <div id='nav' ng-controller='NavCtl'>
+      <a ng-repeat='route in routes' ng-if='route.name' href='#{{ route.originalPath }}'>
+        {{ route.name }}
+      </a>
+    </div>
+
+    <div id="ini-logo">
+      <a href="http://infoini.de"><img src="assets/img/inilogo_140x140.png"/></a>
+    </div>
 
     <div ng-view/>
 
