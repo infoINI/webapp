@@ -1,0 +1,23 @@
+<div id='page_status' ng-controller='StatusCtl'>
+  <row style="text-align:center;">
+    <b>
+      <span class="symbol">☕</span>
+      <span> Kaffee Füllstand</span>
+    </b>
+  </row>
+  <row>
+    <div class="cafe_bar" ng-repeat='pot in api.status.pots'>
+      <div style="width: {{ pot.level }}%;" class="bar">
+        <div class="text">{{ pot.level }} %</div>
+      </div>
+    </div>
+  </row>
+  <div class="main noDemo frame_tuer">
+    <row class="row" ng-if='api.status != "OPEN"'>
+      <div id="tuer" class="open">Raum offen</div>
+    </row>
+    <row class="row" ng-if='api.status == "OPEN"'>
+      <div id="tuer" class="closed">Raum geschlossen</div>
+    </row>
+  </div>
+</div>

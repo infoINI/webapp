@@ -54,7 +54,7 @@ body, div, html,h1 {margin:0;padding:0; }
   .header h1 {
     font-size:2em;
     text-shadow: 0.05em 0.05em 0.1em #aaa;
-    margin-top:1em;
+    margin-top:3em;
   }
   .header .up       { float:right;color:#aaa;}
   .header .up:hover { color: #00555f;}
@@ -77,8 +77,16 @@ body, div, html,h1 {margin:0;padding:0; }
     text-align: left;
   }
 
+  /* status           --------------------------------------------------- */
+    #page_status .cafe_bar {
+            position: relative;
+        }
+    #page_status .cafe_bar .bar {
+            transition: width 1s;
+
+        }
   /* members          --------------------------------------------------- */
-  #page_members .main{ background-color:#d8d8d8;min-height:10em; }
+  .page_members .main{ background-color:#d8d8d8;min-height:10em; }
   #page_vote .main{ background-color:#d8d8d8;min-height:10em; }
   .member_img {
           padding-right:0.2em;
@@ -94,6 +102,7 @@ body, div, html,h1 {margin:0;padding:0; }
           float:left;
           font-size:0.9em;
           cursor:pointer;
+          transition:all 0.5s;
   }
 
   .member_position, .member_comment, .member_mail, .member_course { color:#333;font-size:0.7em;font-style:italic;}
@@ -110,12 +119,9 @@ body, div, html,h1 {margin:0;padding:0; }
   #page_donate td, {padding:0;margin:0;}
 
   /* status           --------------------------------------------------- */
-  #page_status .main { font-size:1.2em;}
-  #page_status .frame_tuer { margin-top:1em;}
   #tuer              { text-align:center;}
   #tuer.open         { background-color:#0a0; }
   #tuer.closed       { background-color:#c00; }
-  .cafe_bar { height:1.2em;position:relative;}
   .cafe_bar .text {
           position:absolute;
           left:0;top:0;
@@ -141,8 +147,8 @@ body, div, html,h1 {margin:0;padding:0; }
   #speiseplan .siegel {height:1em;}
 
   /* news             --------------------------------------------------- */
-  #news h2 {padding:0;margin:0;}
-  #news p {padding:0;margin:0;margin-bottom:0.6em;text-align:justify;}
+  .news h2 {padding:0.2em;margin:0;}
+  .news p {padding:0.2em;margin:0;margin-bottom:0.6em;text-align:justify;}
 
   /* big displays     --------------------------------------------------- */
   @media only screen and (min-width: 1000px) and (max-width: 1499px) { 
@@ -187,42 +193,6 @@ body, div, html,h1 {margin:0;padding:0; }
         }
         .header h1:nth-of-type(1) {margin-top:0; }
 
-        /* status */
-        #page_status {
-            margin-left:0;
-            margin-bottom:0;
-            position:fixed;
-            left:0;
-            right:0;
-            bottom:0;
-            height:200px;
-            font-size:0.5em;
-            z-index:2;
-            background-color:#eee;
-            box-shadow: 0 0 0.4em #666;
-        }
-        #page_status .row.cafe_bar {
-            float: left;
-            width:80%;
-            height: 100px;
-        }
-        #page_status .row.cafe_bar .bar {
-            height:100px;
-            font-size:60px;
-            -webkit-transition: width 1s;
-
-        }
-        #page_status .row:nth-child(1) {
-            float: left;
-            width: 15%;
-        }
-        #page_status .row.qr_code {
-            float: left;
-            width: 5%;
-        }
-
-        #page_status .frame_tuer { margin-top:0;}
-        #page_status .header { display:none; }
 
         /* member */
         .member {width:25%;font-size:0.6em;}
@@ -231,6 +201,7 @@ body, div, html,h1 {margin:0;padding:0; }
   /* small displays   --------------------------------------------------- */
   @media only screen and (max-width: 550px) { 
         body, table { font-size:16px; }
+        .page .header h1 { padding-top: 0px;margin-top: 0px; }
         #nav {position:static;font-size:24px;}
         #ini-logo {position:absolute;height:5em;}
         #nav a { display:block; border-top:1px solid #aaa;border-right:0;}
@@ -247,13 +218,54 @@ body, div, html,h1 {margin:0;padding:0; }
   body::-webkit-scrollbar{ display:none;}
   @media only screen and (min-width: 1200px) {
     .demo #nav { font-size:0.8em;}
-    .demo #page_status b {font-size:0.8em;}
     .demo .qr_code { font-size:0.6em;}
+  }
+
+
+        /* status */
+    .demo #page_status b {font-size:0.8em;}
     .demo #page_status .symbol {
       display: block;
       font-size: 400%;
     }
-  }
+    .demo #page_status {
+            margin-left:0;
+            margin-bottom:0;
+            position:fixed;
+            left:0;
+            right:0;
+            bottom:0;
+            height:300px;
+            font-size:0.5em;
+            z-index:2;
+            background-color:#eee;
+            box-shadow: 0 0 0.4em #666;
+        }
+    /*
+        */
+    .demo #page_status .cafe_bar {
+            height: 150px;
+            position: relative;
+        }
+    .demo #page_status .cafe_bar .bar {
+            height:150px;
+            font-size:100px;
+            transition: width 1s;
+
+        }
+    .demo #page_status .row:nth-child(1) {
+            float: left;
+            width: 250px;
+            height: 300px;
+            font-size:60px;
+        }
+    .demo #page_status .row:nth-child(2) ,
+    .demo #page_status .row:nth-child(3) {
+            height: 150px;
+            margin-left:250px;
+        }
+
+
   /* store links      --------------------------------------------------- */
   .store_link {
     font-size:1.2em;
