@@ -21,6 +21,7 @@ app.directive 'page', ->
 app.directive 'row', ->
   restrict: 'E'
   transclude: true
+  replace: true
   templateUrl: 'row.html'
 
 app.directive 'member', ->
@@ -34,11 +35,6 @@ app.directive 'member', ->
 
 app.config ($routeProvider,   $locationProvider) ->
   $routeProvider
-  .when('/status'
-    templateUrl: 'status.html'
-    controller: 'StatusCtl'
-    name: 'Status'
-  )
   .when('/members'
     templateUrl: 'members.html'
     controller: 'MembersCtl'
@@ -64,7 +60,7 @@ app.config ($routeProvider,   $locationProvider) ->
     controller: 'MensaCtl'
     name: 'Mensa'
   )
-  .otherwise('/status')
+  .otherwise('/members')
 
 app.filter 'mensaPreisStudent', ->
   (str) -> str.substring(4, str.indexOf('/')-1)
@@ -99,6 +95,12 @@ app.service 'iniAPI', class Api
     @$http.get('//infoini.de/api/mensa.json').success (res) =>
       @mensa = res
 
+  getStatus: ->
+    @$http.get('//infoini.de/api/combined.json').success (res) =>
+      @status = res
+      @status.pots.map (pot) ->
+        pot.level = 0 if not pot.level
+
 
 
 app.controller 'DontationsCtl', ($scope, iniAPI) ->
@@ -122,9 +124,12 @@ app.controller 'MensaCtl', ($scope, iniAPI) ->
   iniAPI.getMensa()
   $scope.api = iniAPI
 
-app.controller 'StatusCtl', ($scope, iniAPI) ->
-  iniAPI.getMensa()
+app.controller 'StatusCtl', ($scope, iniAPI, $interval) ->
   $scope.api = iniAPI
+  iniAPI.getStatus()
+  #$interval ->
+  #  iniAPI.getStatus()
+  #, 1000
 
 app.controller 'NavCtl', ($scope, $route) ->
   $scope.routes = $route.routes

@@ -67,6 +67,7 @@ gulp.task('copy', function () {
 });
 
 gulp.task("webpack-dev-server", function(callback) {
+    gulp.watch(["src/**/*"], ['copy']);
     // modify some webpack config options
     var myConfig = Object.create(webpackConfig);
     myConfig.devtool = "eval";
