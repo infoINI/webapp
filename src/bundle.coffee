@@ -60,7 +60,7 @@ app.config ($routeProvider,   $locationProvider) ->
     controller: 'MensaCtl'
     name: 'Mensa'
   )
-  .otherwise('/members')
+  .otherwise('/news')
 
 app.filter 'mensaPreisStudent', ->
   (str) -> str.substring(4, str.indexOf('/')-1)
