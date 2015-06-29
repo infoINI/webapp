@@ -77,6 +77,14 @@ body, div, html,h1 {margin:0;padding:0; }
     text-align: left;
   }
 
+  /* status           --------------------------------------------------- */
+    #page_status .cafe_bar {
+            position: relative;
+        }
+    #page_status .cafe_bar .bar {
+            transition: width 1s;
+
+        }
   /* members          --------------------------------------------------- */
   .page_members .main{ background-color:#d8d8d8;min-height:10em; }
   #page_vote .main{ background-color:#d8d8d8;min-height:10em; }
@@ -241,7 +249,7 @@ body, div, html,h1 {margin:0;padding:0; }
         }
     .demo #page_status .cafe_bar .bar {
             height:150px;
-            font-size:60px;
+            font-size:100px;
             transition: width 1s;
 
         }
@@ -249,6 +257,7 @@ body, div, html,h1 {margin:0;padding:0; }
             float: left;
             width: 250px;
             height: 300px;
+            font-size:60px;
         }
     .demo #page_status .row:nth-child(2) ,
     .demo #page_status .row:nth-child(3) {
