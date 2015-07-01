@@ -100,6 +100,7 @@ app.service 'iniAPI', class Api
       @status = res
       @status.pots.map (pot) ->
         pot.level = 0 if not pot.level
+      @status.open = 'OPEN' == res.status
 
 
 
@@ -127,9 +128,9 @@ app.controller 'MensaCtl', ($scope, iniAPI) ->
 app.controller 'StatusCtl', ($scope, iniAPI, $interval) ->
   $scope.api = iniAPI
   iniAPI.getStatus()
-  #$interval ->
-  #  iniAPI.getStatus()
-  #, 1000
+  $interval ->
+    iniAPI.getStatus()
+  , 1000
 
 app.controller 'NavCtl', ($scope, $route) ->
   $scope.routes = $route.routes

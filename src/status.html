@@ -13,10 +13,10 @@
     </div>
   </row>
   <div class="main noDemo frame_tuer">
-    <row class="row" ng-if='api.status != "OPEN"'>
+    <row class="row" ng-if='api.status.open'>
       <div id="tuer" class="open">Raum offen</div>
     </row>
-    <row class="row" ng-if='api.status == "OPEN"'>
+    <row class="row" ng-unless='api.status.open'>
       <div id="tuer" class="closed">Raum geschlossen</div>
     </row>
   </div>
