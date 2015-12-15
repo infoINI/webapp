@@ -8,7 +8,7 @@
   <row>
     <div class="cafe_bar" ng-repeat='pot in api.status.pots'>
       <div style="width: {{ pot.level }}%;" class="bar">
-        <div class="text">{{ pot.level }} %</div>
+        <div class="text">{{ pot.level/50 }} l</div>
       </div>
     </div>
   </row>
@@ -16,7 +16,7 @@
     <row class="row" ng-if='api.status.open'>
       <div id="tuer" class="open">Raum offen</div>
     </row>
-    <row class="row" ng-unless='api.status.open'>
+    <row class="row" ng-if='!api.status.open'>
       <div id="tuer" class="closed">Raum geschlossen</div>
     </row>
   </div>

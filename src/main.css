@@ -92,6 +92,10 @@ body, div, html,h1 {margin:0;padding:0; }
           padding-right:0.2em;
           float:left;
   }
+  .member_img {
+          width:5em;
+          text-align:right;
+  }
   .member_img img {
           height:5em;
           border-right:1px solid #999;
@@ -303,3 +307,27 @@ body, div, html,h1 {margin:0;padding:0; }
 .snow {
      text-shadow: 0.05em 0.05em 0.2em #666;
 }
+
+  /* lh-hav           --------------------------------------------------- */
+  #lh-nav {
+    border-bottom:1px solid #aaa;
+    background-color: #ddd;
+    z-index: 100;
+    text-shadow: 0.05em 0.05em 0.1em #aaa;
+    box-shadow: 0 0 0.4em #666;
+    /* http://www.colorzilla.com/gradient-editor/ */
+    background: #ddd;
+    background: -moz-linear-gradient(top, #ffffff 0%, #d6d6d6 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#d6d6d6));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#d6d6d6 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#d6d6d6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d6d6d6',GradientType=0 );
+  }
+  #lh-nav a {
+    display:inline-block;
+    padding:0.2em;
+    border-right:1px solid #aaa;
+  }
+  #lh-nav a:hover, #nav a.current { background-color:#fff;}

@@ -4,8 +4,15 @@
     <tbody>
       <tr ng-class='$even? "alt":""' ng-repeat='d in api.donations' class="row">
         <td>{{ d.item }}</td>
-        <td style="text-align:right;" >{{ d.price |number:2 }} €</td>
+        <td style="text-align:right;" >
+          {{ d.price |number:2 }} €
+          <small>({{ d.priceFSR |number:2 }} €)</small>
+        </td>
       </tr>
     </tbody>
   </table>
+  <row>
+    Preise in Klammern für FSR/Helfer.
+    Spenden in Form von Zucker, Kaffee und Milch sind auch willkommen.
+  </ro>
 </page>

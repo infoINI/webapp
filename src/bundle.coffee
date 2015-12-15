@@ -1,5 +1,8 @@
 app = angular.module 'iniWebapp', ['ngRoute']
 
+moment = require 'moment'
+moment.locale 'de'
+
 require './main.css'
 require './donations.html'
 require './member.html'
@@ -10,30 +13,31 @@ require './row.html'
 require './page.html'
 require './news.html'
 require './status.html'
+require './lh-index.html'
 
-app.directive 'page', ->
+app.directive 'page', ng ->
   restrict: 'E'
   transclude: true
   templateUrl: 'page.html'
   scope:
     header: '=header'
 
-app.directive 'row', ->
+app.directive 'row', ng ->
   restrict: 'E'
   transclude: true
   replace: true
   templateUrl: 'row.html'
 
-app.directive 'member', ->
+app.directive 'member', ng ->
   restrict: 'E'
   templateUrl: 'member.html'
   scope:
     m: '=member'
-  controller: ($scope, $element) ->
+  controller: ng ($scope, $element) ->
     $scope.toggle = () ->
       $scope.active = !$scope.active
 
-app.config ($routeProvider,   $locationProvider) ->
+app.config ng ($routeProvider,   $locationProvider) ->
   $routeProvider
   .when('/members'
     templateUrl: 'members.html'
@@ -60,12 +64,25 @@ app.config ($routeProvider,   $locationProvider) ->
     controller: 'MensaCtl'
     name: 'Mensa'
   )
+  .when('/lh:path*'
+    templateUrl: 'lh-index.html'
+    controller: 'LHCtl'
+    name: 'Lernhilfen'
+  )
+  .when('/lh-upload'
+    templateUrl: 'lh-upload.html'
+    controller: 'LHUploadCtl'
+  )
+  .when('/lh-datail'
+    templateUrl: 'lh-detail.html'
+    controller: 'LHDetailCtl'
+  )
   .otherwise('/news')
 
-app.filter 'mensaPreisStudent', ->
+app.filter 'mensaPreisStudent', ng ->
   (str) -> str.substring(4, str.indexOf('/')-1)
 
-app.service 'iniAPI', class Api
+app.service 'iniAPI', [ '$http', class Api
   constructor: (@$http) ->
 
   getDonations: ->
@@ -91,7 +108,7 @@ app.service 'iniAPI', class Api
       @news = res.news[0]
 
   getMensa: ->
-    return @mensa if @mensa
+    #return @mensa if @mensa
     @$http.get('//infoini.de/api/mensa.json').success (res) =>
       @mensa = res
 
@@ -101,39 +118,111 @@ app.service 'iniAPI', class Api
       @status.pots.map (pot) ->
         pot.level = 0 if not pot.level
       @status.open = 'OPEN' == res.status
+]
 
+app.service 'lhAPI', [ '$http', class LhAPI
+  constructor: (@$http) ->
 
+  login: (username, password) ->
+    data = {
+      data:
+        username: username
+        password: password
+    }
+    config = {
+      headers:
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      transformRequest: (data, headersGetter) ->
+        a = []
+        for k,v of data.data
+          a.push(encodeURIComponent(k) + '=' + encodeURIComponent(v))
+        return a.join('&')
+    }
+    @$http.post('https://infoini.de/api/lh/login', data, config).then( (res) =>
+      alert('login ok')
+      @getIndex()
+    , (err) ->
+      alert('login failed')
+    )
 
-app.controller 'DontationsCtl', ($scope, iniAPI) ->
+  getIndex: (path='/') ->
+    req = {
+      url: 'https://infoini.de/api/lh/list'+ path
+      method: 'GET'
+    }
+    @$http(req).success (res) =>
+      @index = res
+]
+
+app.controller 'DontationsCtl', ng ($scope, iniAPI) ->
   iniAPI.getDonations()
   $scope.api = iniAPI
 
 
-app.controller 'MembersCtl', ($scope, iniAPI) ->
+app.controller 'MembersCtl', ng ($scope, iniAPI) ->
   iniAPI.getMembers()
   $scope.api = iniAPI
 
-app.controller 'HelpersCtl', ($scope, iniAPI) ->
+app.controller 'HelpersCtl', ng ($scope, iniAPI) ->
   iniAPI.getHelpers()
   $scope.api = iniAPI
 
-app.controller 'NewsCtl', ($scope, iniAPI) ->
+app.controller 'NewsCtl', ng ($scope, iniAPI) ->
   iniAPI.getNews()
   $scope.api = iniAPI
 
-app.controller 'MensaCtl', ($scope, iniAPI) ->
-  iniAPI.getMensa()
+app.controller 'MensaCtl', ng ($scope, iniAPI) ->
   $scope.api = iniAPI
+  iniAPI.getMensa().then ->
+    console.log 'got mensa'
+    for d, c of iniAPI.mensa
+      d = moment.unix parseInt(d, 10)
+      # search for todays card first
+      if moment().hour() < 14
+        if d.isSame(moment(), 'day')
+          $scope.content = c
+          $scope.date = 'Heute'
+          break
+      # if it is after 14:00, show next day
+      if d.isAfter(moment(), 'day')
+        $scope.content = c
+        $scope.date = d.format('[Am] dddd, DD.MM.YYYY')
+        break
 
-app.controller 'StatusCtl', ($scope, iniAPI, $interval) ->
+app.controller 'StatusCtl', ng ($scope, iniAPI, $interval) ->
   $scope.api = iniAPI
   iniAPI.getStatus()
   $interval ->
     iniAPI.getStatus()
   , 1000
 
-app.controller 'NavCtl', ($scope, $route) ->
+app.controller 'LHCtl', ng ($scope, $routeParams, lhAPI) ->
+  path = $routeParams.path
+  console.log 'path', path
+  $scope.path = path
+
+  $scope.breadcrumbs = []
+  pathParts = path.split '/'
+  for p,i in pathParts
+    $scope.breadcrumbs.push(
+      url: '#lh' + pathParts.slice(0, i+1).join '/'
+      name: p
+    )
+  $scope.lhAPI = lhAPI
+  $scope.credentials = {
+    username: ''
+    password: ''
+  }
+  $scope.onLogin = ->
+    lhAPI.login \
+      $scope.credentials.username, $scope.credentials.password
+
+  lhAPI.getIndex(path)
+
+app.controller 'NavCtl', ng ($scope, $route) ->
   $scope.routes = $route.routes
+
+
 
 $(document).ready ->
   demo = window.location.search == '?demo'

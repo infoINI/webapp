@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <head>
+    <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org"/>
+    <title>infoINI-Status</title>
+    <meta charset="utf-8"/>
+    <!-- icons -->
+    <link rel="shortcut icon" href="/media/favicon.ico"/>
+    <link rel="apple-touch-icon" href="/media/logo.png" sizes="118x118"/>
+    <link rel="apple-touch-icon" href="/media/logo_32.png" sizes="32x32"/>
+    <link rel="apple-touch-icon" href="/media/logo.png"/>
+    <link rel="apple-touch-icon-precomposed" href="/media/logo.png"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no"/>
+    <!-- included style for faster loading -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="apple-touch-startup-image" href="/media/logo.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js'></script>
+    <!--
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js'></script>
+    -->
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.min.js'></script>
+    <script type="text/javascript" src="bundle.js"></script>
+  </head>
+  <body ng-app='iniWebapp'>
 
-  <title>infoINI-Status</title>
-  <meta charset="utf-8"><!-- icons -->
-  <link rel="shortcut icon" href="/media/favicon.ico">
-  <link rel="apple-touch-icon" href="/media/logo.png" sizes="118x118">
-  <link rel="apple-touch-icon" href="/media/logo_32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/media/logo.png">
-  <link rel="apple-touch-icon-precomposed" href="/media/logo.png">
-  <meta name="HandheldFriendly" content="true">
-  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no"><!-- included style for faster loading -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="apple-touch-startup-image" href="/media/logo.png">
-  <link rel="stylesheet" type="text/css" href="assets/main.css"/>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript">
-</script>
-  <script src="assets/js/jquery.scrollTo-1.4.3.1-min.js" type="text/javascript">
-</script>
-  <script src="assets/js/jquery.nav.js" type="text/javascript">
-</script>
-</head>
+    <div id='nav' ng-controller='NavCtl'>
+      <div ng-include='"status.html"' ng-controller='StatusCtl'></div>
+      <a class='noDemo' href="/api/raumplan.pdf">Raumplan</a>
+      <a class='noDemo' href="/api/zuendstoff.pdf">Zündstoff</a>
+      <a ng-repeat='route in routes' ng-if='route.name' href='#{{ route.originalPath }}'>
+        {{ route.name }}
+      </a>
+<row class="alt hdOnly qr_code" style="text-align:center;">
+  <img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAANgAAADYCAIAAAAGQrq6AAAABnRSTlMA/gABAP1bbA07AAAD7klE%20QVR4nO3dQYpjORBAwfIw979yzQk0oCbVejIR2y7Md/uhRSJ9fX5/f3/gtn9uPwD8/AiRCCGSIEQS%20hEiCEEkQIgn/rv7h8/n8zef4Y6s56Onn352/rp5n9/lvfd8pq+e3IpIgRBKESIIQSRAiCUIkQYgk%20LOeIK7f2L+7OyabmbVPzwlte+b2siCQIkQQhkiBEEoRIghBJECIJ23PElan52dTca2o/3+nvtfuc%20U2q/lxWRBCGSIEQShEiCEEkQIglCJGFsjlizO986Pb+8NS98hRWRBCGSIEQShEiCEEkQIglCJOFr%2054grt84dmxf+PysiCUIkQYgkCJEEIZIgRBKESMLYHLE2J7t1Hnmlth+x9ntZEUkQIglCJEGIJAiR%20BCGSIEQStueItXtEdp2+77g2d3zl97IikiBEEoRIghBJECIJQiRBiCQs54i1/Wq7pt6P+Moc7vXf%20y4pIghBJECIJQiRBiCQIkQQhkrCcI07dd3z6/pKV03O1V+aUp/c1TvVgRSRBiCQIkQQhkiBEEoRI%20ghBJuPZ+xN050+nzwq+b+l5T88JdVkQShEiCEEkQIglCJEGIJAiRhOPnmm/NpXbtPk9tf+Rpp39H%20KyIJQiRBiCQIkQQhkiBEEoRIwth+xF1Tc7jT+/B21eajK6fnoLt/b0UkQYgkCJEEIZIgRBKESIIQ%20SRi7r3nqPPKt88u37nFeOT13PL0/0vsReZIQSRAiCUIkQYgkCJEEIZIwth/x9Nyudi/IrfcR1ng/%20Il9FiCQIkQQhkiBEEoRIghBJ2L6veeX0frupfZC31PYX1s5xWxFJECIJQiRBiCQIkQQhkiBEEj63%205m21OeWUW+eFV07v+5xiRSRBiCQIkQQhkiBEEoRIghBJOL4f8dY55al9crfuTandH7P7+e5Z4UlC%20JEGIJAiRBCGSIEQShEjCtf2Ip9X22+06/fy33h/pnhXShEiCEEkQIglCJEGIJAiRhLH9iLfU7h0+%20fV575da+zylWRBKESIIQSRAiCUIkQYgkCJGE7fuaX3+f4q17lld/f/q+k9Of41wzX0WIJAiRBCGS%20IEQShEiCEEnYniOu1OZhpz//1lzzlfcd7rIikiBEEoRIghBJECIJQiRBiCSMzRFfcWveWTsfXZtf%20WhFJECIJQiRBiCQIkQQhkiBEEr52jvjKfcort+6JnppHumeFJwmRBCGSIEQShEiCEEkQIgljc8Ta%20Pci159l1ev/ilKn/ZysiCUIkQYgkCJEEIZIgRBKESML2HPGVe5xr+/ZuuXVviv2IPEmIJAiRBCGS%20IEQShEiCEEn4vDIP47tZEUkQIglCJEGIJAiRBCGSIEQS/gMnD1r53HbJsQAAAABJRU5ErkJggg==" >
+  <div>http://infoini.de/webapp/</div>
+</row>
+    </div>
 
     <div id="ini-logo">
       <a href="http://infoini.de"><img src="assets/img/inilogo_140x140.png"/></a>
@@ -30,24 +45,13 @@
 
     <div ng-view/>
 
-  <div id='react-container'></div>
 
-  <div class="page" id="page_mensa">
-    <div class="header">
-      <div class="content">
-		  <h1>Mensa</h1>
-      </div>
+    <div id="ini-logo">
+      <a href="http://infoini.de">
+        <img src="assets/img/inilogo_140x140.png"/>
+      </a>
     </div>
 
-    <div class="main">
-      <div class="row">
-        <div id="speiseplan" class="content">
-          Heute... <script type="text/javascript" src="http://www.studentenwerk-berlin.de/speiseplan/js/beuth/tag/kurz/0">
-</script>
-        </div>
-      </div>
-    </div>
-  </div>
 
     <div class="page footer" style="display: none">
       <div class="content">
@@ -57,27 +61,5 @@
 		Native Apps könnem mit der <a href="/api/">API</a> entwickelt werden.</p>
       </div>
     </div>
-
-    <div style="clear:both;"></div>
-  </div>
-  -->
-
-
-  <div class="page footer">
-	<div class="content">
-		<p>Getestet mit Firefox 18, Chromium 24, Nokia N9, Android 2.3
-
-		Wenn Anpassungen für weitere Geräte nötig sind, meldet euch bei einem der Mitlgieder im <a href="http://infoini.de/redmine/projects/webapp">Projekt</a>
-		Native Apps könnem mit der <a href="/api/">API</a> entwickelt werden.</p>
-	</div>
-  </div>
-  <script type="text/javascript" src="bundle.js"></script>
-  <!--
-  <script type="text/javascript" src="assets/js/snow.js"></script>
-  <script type="text/javascript">
-    initsnow();
-  </script>
-  -->
-
-</body>
+  </body>
 </html>

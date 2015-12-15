@@ -13,11 +13,13 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.coffee$/, loader: "coffee-loader" },
-            { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" },
+            { test: /\.coffee$/, loader: "nginjector!coffee-loader" },
+            { test: /\.(coffee\.md|litcoffee)$/, loader: "nginjector!coffee-loader?literate" },
             { test: /\.css$/,    loader: "style-loader!css-loader" },
             { test: /\.html$/, loader: "ngtemplate?relativeTo=" + (path.resolve(__dirname, './src')) + "/!html" }
         ]
     },
-    plugins: []
+    plugins: [
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|en/)
+    ]
 };

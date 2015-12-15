@@ -1,0 +1,58 @@
+
+<page header='"Lernhilfen"'>
+  <row>
+    <div id='lh-nav'>
+      <a>Login</a>
+      <a>Index</a>
+      <a>Suche</a>
+      <a>Hochladen</a>
+    </div>
+  </row>
+  <row>
+    Für den Zugriff wird ein valides HRZ Konto benötigt.
+    <form ng-submit='onLogin()'>
+      <div style='display:flex'>
+        HRZ Name:
+        <input  style='flex:1' type='text' name='username' ng-model='credentials.username'/>
+        HRZ Passwort:
+        <input  style='flex:1' type='password' name='password' ng-model='credentials.password'/>
+        <input type='checkbox' id='save'/>
+        <label for='save'>speichern</label>
+        <input style='flex:0.1' type='submit' value='login'/>
+      </div>
+    <form>
+
+  </row>
+  <row>
+    <form>
+      <div style='display:flex'>
+        <input style='flex:1' name='q' type='text'/>
+        <input style='flex:0.1' type='submit' value='Suchen'/>
+      </div>
+    </form>
+    <small>
+      Text kann in Eigenschaften gesucht werden, zb tag:klausur
+      Durchsuchbare Eigenschaften: tag, date,
+    </small>
+  </row>
+
+  <row>
+    <div>
+      <span ng-repeat='b in breadcrumbs'>
+        <a href='{{b.url}}'>{{ b.name }}</a>
+        <span ng-if='!$last'>/</span>
+      </span>
+    </div>
+    Subdirs:
+    <ul>
+      <li ng-repeat='dir in lhAPI.index.dirs'><a href="#/lh/{{dir.path}}">{{dir.name}}</a></li>
+
+    </ul>
+    <ul>
+      <li ng-repeat='file in lhAPI.index.files'><a href="https://infoini.de/api/lh/file{{path}}/{{file.name}}">{{file.name}}</a></li>
+    </ul>
+    <pre>
+      {{ lhAPI.index |json}}
+    </pre>
+  </row>
+</page>
