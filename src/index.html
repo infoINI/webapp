@@ -29,7 +29,7 @@
       <div ng-include='"status.html"' ng-controller='StatusCtl'></div>
       <a class='noDemo' href="/api/raumplan.pdf">Raumplan</a>
       <a class='noDemo' href="/api/zuendstoff.pdf">Zündstoff</a>
-      <a ng-repeat='route in routes' ng-if='route.name' href='#{{ route.originalPath }}'>
+      <a ng-repeat='route in routes' ng-if='route.name && (!demo || !route.hideInDemo)' href='#{{ route.originalPath }}'>
         {{ route.name }}
       </a>
 <row class="alt hdOnly qr_code" style="text-align:center;">

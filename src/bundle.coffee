@@ -68,6 +68,7 @@ app.config ng ($routeProvider,   $locationProvider) ->
     templateUrl: 'lh-index.html'
     controller: 'LHCtl'
     name: 'Lernhilfen'
+    hideInDemo: true
   )
   .when('/lh-upload'
     templateUrl: 'lh-upload.html'
@@ -220,6 +221,7 @@ app.controller 'LHCtl', ng ($scope, $routeParams, lhAPI) ->
   lhAPI.getIndex(path)
 
 app.controller 'NavCtl', ng ($scope, $route) ->
+  $scope.demo = window.location.search == '?demo'
   $scope.routes = $route.routes
 
 
