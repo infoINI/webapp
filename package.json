@@ -3,7 +3,10 @@
   "description": "infoini status page with useful informations",
   "version": "0.2.0",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "json-loader": "^0.5.4",
+    "rss-parser": "^2.5.2"
+  },
   "devDependencies": {
     "base64-js": "0.0.8",
     "coffee-loader": "~0.7.2",

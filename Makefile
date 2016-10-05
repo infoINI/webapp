@@ -1,2 +1,3 @@
 publish:
-	rsync -rv --exclude='.git*' --delete ./build/ root@infoini.de:/local/webapp/
+	gulp build
+	rsync -rv --exclude='.git*' --delete ./build/ core@infoini.de:/srv/webapp/

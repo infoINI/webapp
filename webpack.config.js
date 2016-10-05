@@ -13,6 +13,7 @@ module.exports = {
     },
     module: {
         loaders: [
+            { test: /\.json$/, loader: "json" },
             { test: /\.coffee$/, loader: "nginjector!coffee-loader" },
             { test: /\.(coffee\.md|litcoffee)$/, loader: "nginjector!coffee-loader?literate" },
             { test: /\.css$/,    loader: "style-loader!css-loader" },

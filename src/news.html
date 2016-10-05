@@ -1,11 +1,10 @@
 <page class='news' header='"News"'>
   <row>
-    <h2>{{ api.news.title }}</h2>
-    <p><i>{{ api.news.summary }}</i></p>
-    <p>{{ api.news.description }}</p>
+    <!--<h2>{{ api.news.title }}</h2>-->
+    <p ng-bind-html="api.news.content"></p>
   </row>
   <row class='alt noDemo'>
     <div  class="linkMore noDemo">
-      <a  href="http://infoini.de/redmine/projects/fsropen/news">Alle News</a>
+      <a  href="http://infoini.de/news">RSS</a>
     </div>
 </page>

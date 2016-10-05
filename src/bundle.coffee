@@ -1,6 +1,7 @@
 app = angular.module 'iniWebapp', ['ngRoute']
 
 moment = require 'moment'
+parser = require 'rss-parser/dist/rss-parser.js'
 moment.locale 'de'
 
 require './main.css'
@@ -49,11 +50,11 @@ app.config ng ($routeProvider,   $locationProvider) ->
     controller: 'HelpersCtl'
     name: 'Helfer'
   )
-  .when('/donations'
-    templateUrl: 'donations.html'
-    controller: 'DontationsCtl'
-    name: 'Spenden'
-  )
+  #.when('/donations'
+  #  templateUrl: 'donations.html'
+  #  controller: 'DontationsCtl'
+  #  name: 'Spenden'
+  #)
   .when('/news'
     templateUrl: 'news.html'
     controller: 'NewsCtl'
@@ -64,20 +65,20 @@ app.config ng ($routeProvider,   $locationProvider) ->
     controller: 'MensaCtl'
     name: 'Mensa'
   )
-  .when('/lh:path*'
-    templateUrl: 'lh-index.html'
-    controller: 'LHCtl'
-    name: 'Lernhilfen'
-    hideInDemo: true
-  )
-  .when('/lh-upload'
-    templateUrl: 'lh-upload.html'
-    controller: 'LHUploadCtl'
-  )
-  .when('/lh-datail'
-    templateUrl: 'lh-detail.html'
-    controller: 'LHDetailCtl'
-  )
+  #.when('/lh:path*'
+  #  templateUrl: 'lh-index.html'
+  #  controller: 'LHCtl'
+  #  name: 'Lernhilfen'
+  #  hideInDemo: true
+  #)
+  #.when('/lh-upload'
+  #  templateUrl: 'lh-upload.html'
+  #  controller: 'LHUploadCtl'
+  #)
+  #.when('/lh-datail'
+  #  templateUrl: 'lh-detail.html'
+  #  controller: 'LHDetailCtl'
+  #)
   .otherwise('/news')
 
 app.filter 'mensaPreisStudent', ng ->
@@ -102,11 +103,16 @@ app.service 'iniAPI', [ '$http', class Api
     @$http.get('//infoini.de/api/helpers.json').success (res) =>
       @helpers = res.members
 
-  getNews: ->
-    return @news if @news
-    newsUrl = '//infoini.de/redmine/projects/fsropen/news.json'
-    @$http.get(newsUrl).success (res) =>
-      @news = res.news[0]
+  getNews: (cb) ->
+    #return cb(@news) if @news
+    newsUrl = 'https://infoini.de/news'
+    parser.parseURL(newsUrl, (err, res)=>
+      console.log res
+      @news = res.feed.entries[0]
+      cb(@news)
+
+    )
+    #@$http.get(newsUrl).success (res) =>
 
   getMensa: ->
     #return @mensa if @mensa
@@ -168,9 +174,11 @@ app.controller 'HelpersCtl', ng ($scope, iniAPI) ->
   iniAPI.getHelpers()
   $scope.api = iniAPI
 
-app.controller 'NewsCtl', ng ($scope, iniAPI) ->
-  iniAPI.getNews()
+app.controller 'NewsCtl', ng ($scope, $sce, iniAPI) ->
   $scope.api = iniAPI
+  iniAPI.getNews (news)->
+    $scope.api.news.title =  news.title
+    $scope.api.news.content =  $sce.trustAsHtml(news.content)
 
 app.controller 'MensaCtl', ng ($scope, iniAPI) ->
   $scope.api = iniAPI
