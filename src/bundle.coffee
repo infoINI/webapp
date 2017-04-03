@@ -55,11 +55,11 @@ app.config ng ($routeProvider,   $locationProvider) ->
   #  controller: 'DontationsCtl'
   #  name: 'Spenden'
   #)
-  .when('/news'
-    templateUrl: 'news.html'
-    controller: 'NewsCtl'
-    name: 'News'
-  )
+  #.when('/news'
+  #  templateUrl: 'news.html'
+  #  controller: 'NewsCtl'
+  #  name: 'News'
+  #)
   .when('/mensa'
     templateUrl: 'mensa.html'
     controller: 'MensaCtl'
