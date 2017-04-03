@@ -55,11 +55,11 @@ app.config ng ($routeProvider,   $locationProvider) ->
   #  controller: 'DontationsCtl'
   #  name: 'Spenden'
   #)
-  #.when('/news'
-  #  templateUrl: 'news.html'
-  #  controller: 'NewsCtl'
-  #  name: 'News'
-  #)
+  .when('/news'
+    templateUrl: 'news.html'
+    controller: 'NewsCtl'
+    name: 'News'
+  )
   .when('/mensa'
     templateUrl: 'mensa.html'
     controller: 'MensaCtl'
@@ -105,7 +105,7 @@ app.service 'iniAPI', [ '$http', class Api
 
   getNews: (cb) ->
     #return cb(@news) if @news
-    newsUrl = 'https://infoini.de/news'
+    newsUrl = 'https://infoini.de/rss.xml'
     parser.parseURL(newsUrl, (err, res)=>
       console.log res
       @news = res.feed.entries[0]
