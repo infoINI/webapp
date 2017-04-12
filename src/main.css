@@ -58,7 +58,12 @@ body, div, html,h1 {margin:0;padding:0; }
   }
   .header .up       { float:right;color:#aaa;}
   .header .up:hover { color: #00555f;}
-  .page             { margin-bottom:1em; margin-top:1em; }
+  .page             {
+      margin-bottom:1em;
+      margin-top:1em;
+      box-sizing: border-box;
+
+  }
   .main             { border-top:1px solid #ccc; }
   .content          { padding:10px; }
   .row {
@@ -172,8 +177,8 @@ body, div, html,h1 {margin:0;padding:0; }
 
         /* base */
         body, table { font-size:40px; }
-        body {margin-left:250px;}
-        #nav   { padding-top:220px; width:250px;font-size:0.8em;bottom:0;z-index:1; }
+        body {}
+        #nav .demo   { display:none; }
         #nav a { display:block; border-top:1px solid #aaa;border-left:0;border-right:0;}
         #ini-logo {
             position: fixed;
@@ -186,7 +191,6 @@ body, div, html,h1 {margin:0;padding:0; }
             margin-left:1em;
             margin-right:0;
             margin-top:2em;
-            width:auto;
             box-shadow: 0 0 0.4em #666;
         }
         .main {
@@ -215,15 +219,31 @@ body, div, html,h1 {margin:0;padding:0; }
           .active .member_img img { height:auto;width:100%; border:0; }
   }
   /* demo mode        --------------------------------------------------- */
+  .demo #ini-logo {
+      position: fixed;
+      z-index: 100;
+      top: 4px;
+      right: 15px;
+      height:2.2em;
+  }
   .demoOnly {display:none;}
   .demo .demoOnly {display:default;}
   .demo .noDemo {display:none;}
-  body.demo, .demo table { font-size:46px; }
+  body.demo, .demo table { font-size:30px; }
   body::-webkit-scrollbar{ display:none;}
   @media only screen and (min-width: 1200px) {
     .demo #nav { font-size:0.8em;}
     .demo .qr_code { font-size:0.6em;}
   }
+
+
+  .demo .page {
+      display: inline-block;
+      width:45%;
+  }
+
+  .demo #nav {display:none;}
+  body .demo {maring-left: 0;}
 
 
         /* status */
@@ -239,7 +259,7 @@ body, div, html,h1 {margin:0;padding:0; }
             left:0;
             right:0;
             bottom:0;
-            height:300px;
+            height:200px;
             font-size:0.5em;
             z-index:2;
             background-color:#eee;
@@ -248,25 +268,25 @@ body, div, html,h1 {margin:0;padding:0; }
     /*
         */
     .demo #page_status .cafe_bar {
-            height: 150px;
+            height: 100px;
             position: relative;
         }
     .demo #page_status .cafe_bar .bar {
-            height:150px;
-            font-size:100px;
+            height:100px;
+            font-size:80px;
             transition: width 1s;
 
         }
     .demo #page_status .row:nth-child(1) {
             float: left;
-            width: 250px;
-            height: 300px;
-            font-size:60px;
+            width: 150px;
+            height: 200px;
+            font-size:30px;
         }
     .demo #page_status .row:nth-child(2) ,
     .demo #page_status .row:nth-child(3) {
-            height: 150px;
-            margin-left:250px;
+            height: 100px;
+            margin-left:150px;
         }
 
 

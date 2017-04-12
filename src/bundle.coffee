@@ -38,48 +38,70 @@ app.directive 'member', ng ->
     $scope.toggle = () ->
       $scope.active = !$scope.active
 
+app.directive 'members', ng ->
+  restrict: 'E'
+  templateUrl: 'members.html'
+  controller: 'MembersCtl'
+app.directive 'helpers', ng ->
+  restrict: 'E'
+  templateUrl: 'helpers.html'
+  controller: 'HelpersCtl'
+app.directive 'news', ng ->
+  restrict: 'E'
+  templateUrl: 'news.html'
+  controller: 'NewsCtl'
+app.directive 'mensa', ng ->
+  restrict: 'E'
+  templateUrl: 'mensa.html'
+  controller: 'MensaCtl'
+
+app.directive 'status', ng ->
+  restrict: 'E'
+  templateUrl: 'status.html'
+  controller: 'StatusCtl'
+
 app.config ng ($routeProvider,   $locationProvider) ->
-  $routeProvider
-  .when('/members'
-    templateUrl: 'members.html'
-    controller: 'MembersCtl'
-    name: 'Mitglieder'
-  )
-  .when('/helpers'
-    templateUrl: 'helpers.html'
-    controller: 'HelpersCtl'
-    name: 'Helfer'
-  )
-  #.when('/donations'
-  #  templateUrl: 'donations.html'
-  #  controller: 'DontationsCtl'
-  #  name: 'Spenden'
+  #$routeProvider
+  #.when('/members'
+  #  templateUrl: 'members.html'
+  #  controller: 'MembersCtl'
+  #  name: 'Mitglieder'
   #)
-  .when('/news'
-    templateUrl: 'news.html'
-    controller: 'NewsCtl'
-    name: 'News'
-  )
-  .when('/mensa'
-    templateUrl: 'mensa.html'
-    controller: 'MensaCtl'
-    name: 'Mensa'
-  )
-  #.when('/lh:path*'
-  #  templateUrl: 'lh-index.html'
-  #  controller: 'LHCtl'
-  #  name: 'Lernhilfen'
-  #  hideInDemo: true
+  #.when('/helpers'
+  #  templateUrl: 'helpers.html'
+  #  controller: 'HelpersCtl'
+  #  name: 'Helfer'
   #)
-  #.when('/lh-upload'
-  #  templateUrl: 'lh-upload.html'
-  #  controller: 'LHUploadCtl'
+  ##.when('/donations'
+  ##  templateUrl: 'donations.html'
+  ##  controller: 'DontationsCtl'
+  ##  name: 'Spenden'
+  ##)
+  #.when('/news'
+  #  templateUrl: 'news.html'
+  #  controller: 'NewsCtl'
+  #  name: 'News'
   #)
-  #.when('/lh-datail'
-  #  templateUrl: 'lh-detail.html'
-  #  controller: 'LHDetailCtl'
+  #.when('/mensa'
+  #  templateUrl: 'mensa.html'
+  #  controller: 'MensaCtl'
+  #  name: 'Mensa'
   #)
-  .otherwise('/news')
+  ##.when('/lh:path*'
+  ##  templateUrl: 'lh-index.html'
+  ##  controller: 'LHCtl'
+  ##  name: 'Lernhilfen'
+  ##  hideInDemo: true
+  ##)
+  ##.when('/lh-upload'
+  ##  templateUrl: 'lh-upload.html'
+  ##  controller: 'LHUploadCtl'
+  ##)
+  ##.when('/lh-datail'
+  ##  templateUrl: 'lh-detail.html'
+  ##  controller: 'LHDetailCtl'
+  ##)
+  #.otherwise('/news')
 
 app.filter 'mensaPreisStudent', ng ->
   (str) -> str.substring(4, str.indexOf('/')-1)
