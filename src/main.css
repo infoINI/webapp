@@ -60,7 +60,7 @@ body, div, html,h1 {margin:0;padding:0; }
   .header .up:hover { color: #00555f;}
   .page             {
       margin-bottom:1em;
-      margin-top:1em;
+      margin-top:0.1em;
       box-sizing: border-box;
 
   }
@@ -148,7 +148,7 @@ body, div, html,h1 {margin:0;padding:0; }
   .qr_code img { width:100%;}
 
   /* stpeiseplan      --------------------------------------------------- */
-  #speiseplan *{ background-color:transparent; border:0; }
+  #speiseplan *{ background-color:transparent; border:0; font-size:90%; }
   #speiseplan .mensa_day_speise_preis,
   #speiseplan .side_dishes,
   #speiseplan .mensa_additional_information,
@@ -184,13 +184,13 @@ body, div, html,h1 {margin:0;padding:0; }
             position: fixed;
             z-index: 100;
             top: 40px;
-            left: 50px;
+            right: 50px;
             height:auto;
         }
         .page {
             margin-left:1em;
             margin-right:0;
-            margin-top:2em;
+            margin-top:0.1em;
             box-shadow: 0 0 0.4em #666;
         }
         .main {
@@ -239,6 +239,7 @@ body, div, html,h1 {margin:0;padding:0; }
 
   .demo .page {
       display: inline-block;
+      vertical-align: top;
       width:45%;
   }
 
