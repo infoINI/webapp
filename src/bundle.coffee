@@ -144,9 +144,9 @@ app.service 'iniAPI', [ '$http', class Api
   getStatus: ->
     @$http.get('//infoini.de/api/combined.json').success (res) =>
       @status = res
-      @status.pots.map (pot) ->
+      @status.pots?.map (pot) ->
         pot.level = 0 if not pot.level
-      @status.open = 'OPEN' == res.status
+      @status?.open = 'OPEN' == res.status
 ]
 
 app.service 'lhAPI', [ '$http', class LhAPI
